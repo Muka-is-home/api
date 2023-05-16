@@ -4,7 +4,7 @@ from .content_type import ContentType
 
 class Content(models.Model):
   title = models.CharField(max_length=55)
-  body = models.TextField
+  body = models.TextField()
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
   date = models.DateField(auto_now=False, auto_now_add=False)
