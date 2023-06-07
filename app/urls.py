@@ -23,6 +23,6 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'shop', ShopItemView, 'shop_item')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path("admin/", admin.site.urls),
 ]
