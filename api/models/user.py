@@ -9,6 +9,3 @@ class User(models.Model):
   bio = models.TextField()
   user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
   active = models.BooleanField()
-  # image = models.ImageField()
- 
-  
