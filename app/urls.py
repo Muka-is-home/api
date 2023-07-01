@@ -21,7 +21,7 @@ from rest_framework import routers
 from api.views import EmailView
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'test_email', EmailView, 'email')
+router.register(r'emails', EmailView, 'email')
 
 urlpatterns = [
     path("admin/", admin.site.urls),

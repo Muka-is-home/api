@@ -3,14 +3,12 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import action
 from django.core.mail import EmailMessage
 
 class EmailView(ViewSet):
     """Email views"""
 
-    @action(methods=['get'], detail=False)
-    def send_email(self):
+    def list(self, request):
         """test sending email for Muka"""
 
         email = EmailMessage(
