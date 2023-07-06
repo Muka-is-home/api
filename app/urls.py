@@ -27,5 +27,4 @@ router.register(r'logos', LogoView, 'logo')
 urlpatterns = [
     path('api/', include(router.urls)),
     path("admin/", admin.site.urls),
-    path('', include(router.urls))
 ]
