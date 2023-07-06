@@ -1,0 +1,26 @@
+[
+  {
+    "model": "api.county",
+    "pk": 1,
+    "fields": {
+      "name": "Davidson",
+      "state": 1
+    }
+  },
+  {
+    "model": "api.county",
+    "pk": 2,
+    "fields": {
+      "name": "Bronx",
+      "state": 2
+    }
+  },
+  {
+    "model": "api.county",
+    "pk": 3,
+    "fields": {
+      "name": "Orange",
+      "state": 3
+    }
+  }
+]

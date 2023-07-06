@@ -1,0 +1,30 @@
+[
+  {
+    "model": "api.specialization",
+    "pk": 1,
+    "fields": {
+      "tag_name": "Agent"
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 2,
+    "fields": {
+      "tag_name": "Inspector"
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 3,
+    "fields": {
+      "tag_name": "Contractor"
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 4,
+    "fields": {
+      "tag_name": "Lender"
+    }
+  }
+]

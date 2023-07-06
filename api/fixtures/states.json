@@ -1,0 +1,23 @@
+[
+  {
+    "model": "api.state",
+    "pk": 1,
+    "fields": {
+      "name": "Tennessee"
+    }
+  },
+  {
+    "model": "api.state",
+    "pk": 2,
+    "fields": {
+      "name": "new York"
+    }
+  },
+  {
+    "model": "api.state",
+    "pk": 3,
+    "fields": {
+      "name": "California"
+    }
+  }
+]
