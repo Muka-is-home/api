@@ -14,17 +14,6 @@ class ShopItemView(ViewSet):
     shop_item = ShopItem.objects.all()
     serialized = ShopItemSerializer(shop_item, many=True)
     return Response(serialized.data, status=status.HTTP_200_OK)
-  
-  def create(self, request):
-    shop_item = ShopItem()
-    
-    shop_item.name = request.data["name"]
-    shop_item.description = request.data["description"]
-    shop_item.purchase_url = request.data["purchase_url"]
-    shop_item.save()
-    
-    serialized = ShopItemSerializer(shop_item, many=False)
-    return Response(serialized.data, status=status.HTTP_200_OK)
 
 class ShopItemSerializer(serializers.ModelSerializer):
   class Meta:
