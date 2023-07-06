@@ -13,6 +13,7 @@ pylint-django = "*"
 autopep8 = "*"
 pylint = "*"
 pre-commit = "*"
+gitpython = "*"
 
 [requires]
 python_version = "3.9"
