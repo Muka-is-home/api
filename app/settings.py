@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from environ import Env
-import django
-django.setup()
 
 env = Env()
 # reading .env file
