@@ -17,7 +17,7 @@ class SearchView(ViewSet):
             user_counties = UserCounty.objects.filter(user__user_type__name=user_type)
             response = set([user_county.county.state.name for user_county in user_counties])
         elif user_type and state and not county:
-            counties = UserCounty.objects.filter(user__user_type__name=user_type, county__state_name=state)
+            counties = UserCounty.objects.filter(user__user_type__name=user_type, county__state__name=state)
             response = set([county.county.name for county in counties])
         else:
             user_list = users.filter(user_county__county__name=county, user_county__county__state__name=state)
