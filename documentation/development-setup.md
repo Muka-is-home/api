@@ -39,19 +39,19 @@ pre-commit run --all-files
 
 This will create a local db
 
-```
+```shell
 python3 manage.py migrate
 ```
 
 ## Start the server
 
-```
+```shell
 python3 manage.py runserver
 ```
 
 ## If there are any code updates
 
-```
+```shell
 python3 manage.py migrate
 ```
 
@@ -59,7 +59,7 @@ python3 manage.py migrate
 
 Create a local super user
 
-```
+```shell
 python3 manage.py createsuperuser --email admin@gmail.com --username admin
 ```
 

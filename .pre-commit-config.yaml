@@ -1,6 +1,7 @@
 default_language_version:
   # default language version for each language
     python: python3.9
+default_stages: []
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
@@ -18,9 +19,9 @@ repos:
     -   id: pylint
         name: pylint
         entry: pylint
-        language: system
+        language: python
         types: [python]
-        require_serial: true
+        args: [ "--load-plugins=pylint_django", "--django-settings-module=app.settings" ]
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.5.4  # Use the sha / tag you want to point at
     hooks:

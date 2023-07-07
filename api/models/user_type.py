@@ -1,4 +1,5 @@
 from django.db import models
 
+
 class UserType(models.Model):
-  name = models.CharField(max_length=55)
+    name = models.CharField(max_length=55)
