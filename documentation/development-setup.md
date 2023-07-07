@@ -17,22 +17,9 @@ Install pipenv if you do not currently have it. This will allow you to install t
 
 ```shell
 pipenv --python 3.9
-pipenv install
 pipenv shell
-```
-
-## Setup Precommit checks
-
-Run this command to install the pre-commit hooks.
-
-```shell
-pre-commit install
-```
-
-Use this command to check your files before commit if you want to do that
-
-```shell
-pre-commit run --all-files
+pipenv install
+pip install --user pylint
 ```
 
 ## Run migration
