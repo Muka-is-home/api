@@ -1,8 +1,166 @@
-[FORMAT] 
-  good-names=i,j,ex,pk
+[MASTER]
+django-settings-module=app.settings
+ignore-paths=^api/migrations/.*$
+
+# List of plugins (as comma separated values of python modules names) to load,
+# usually to register additional checkers.
+load-plugins=
+    pylint.extensions.no_self_use,
+    pylint_django
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use.
+jobs=0
+
+# When enabled, pylint would attempt to guess common misconfiguration and emit
+# user-friendly hints instead of false-positive error messages.
+suggestion-mode=yes
+
+# Minimum supported python version
+py-version=3.9
+
+# # Specify a score threshold to be exceeded before program exits with error.
+# fail-under=10.0
 
 [MESSAGES CONTROL]
-  disable=broad-except,imported-auth-user,missing-class-docstring,no-self-use,abstract-method
 
-[MASTER]
-  disable=C0114,
+# Only show warnings with the listed confidence levels. Leave empty to show
+# all. Valid levels: HIGH, INFERENCE, INFERENCE_FAILURE, UNDEFINED
+confidence=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifiers separated by comma (,) or put this
+# option multiple times (only on the command line, not in the configuration
+# file where it should appear only once).You can also use "--disable=all" to
+# disable everything first and then re-enable specific checks. For example, if
+# you want to run only the similarities checker, you can use "--disable=all
+# --enable=similarities". If you want to run only the classes checker, but have
+# no Warning level messages displayed, use"--disable=all --enable=classes
+# --disable=W"
+
+disable=
+    broad-except,
+    imported-auth-user,
+    missing-docstring,
+    no-self-use,
+    abstract-method,
+    import-outside-toplevel
+
+[REPORTS]
+
+# Activate the evaluation score.
+score=yes
+
+[MISCELLANEOUS]
+
+# List of note tags to take in consideration, separated by a comma.
+notes=TODO
+
+[SIMILARITIES]
+
+# Minimum lines number of a similarity.
+min-similarity-lines=6
+
+# Ignore comments when computing similarities.
+ignore-comments=yes
+
+# Ignore docstrings when computing similarities.
+ignore-docstrings=yes
+
+# Ignore imports when computing similarities.
+ignore-imports=yes
+
+# Signatures are removed from the similarity computation
+ignore-signatures=yes
+
+
+[VARIABLES]
+
+# Tells whether we should check for unused import in __init__ files.
+init-import=no
+
+# A regular expression matching the name of dummy variables (i.e. expectedly
+# not used).
+dummy-variables-rgx=_
+
+# Argument names that match this expression will be ignored. Default to name
+# with leading underscore.
+ignored-argument-names=_.*
+
+[FORMAT]
+
+# Maximum number of characters on a single line.
+max-line-length=120
+
+# String used as indentation unit. This is usually "    " (4 spaces) or "\t" (1
+# tab).
+indent-string='    '
+
+# Number of spaces of indent required inside a hanging or continued line.
+indent-after-paren=4
+
+[BASIC]
+
+# Good variable names which should always be accepted, separated by a comma
+good-names=i,j,k,ex,pk,_
+
+# Naming style matching correct function names.
+function-naming-style=snake_case
+
+# Naming style matching correct variable names.
+variable-naming-style=snake_case
+
+# Naming style matching correct constant names.
+const-naming-style=UPPER_CASE
+
+# Naming style matching correct attribute names.
+attr-naming-style=snake_case
+
+# Naming style matching correct argument names.
+argument-naming-style=snake_case
+
+# Naming style matching correct class attribute names.
+class-attribute-naming-style=any
+
+# Naming style matching correct class constant names.
+class-const-naming-style=UPPER_CASE
+
+# Naming style matching correct class names.
+class-naming-style=PascalCase
+
+# Naming style matching correct module names.
+module-naming-style=snake_case
+
+# Naming style matching correct method names.
+method-naming-style=snake_case
+
+# Regular expression which should only match function or class names that do
+# not require a docstring. Use ^(?!__init__$)_ to also check __init__.
+no-docstring-rgx=__.*__
+
+[DESIGN]
+
+# Maximum number of arguments for function / method
+max-args=10
+
+[IMPORTS]
+
+# List of modules that can be imported at any level, not just the top level
+# one.
+allow-any-import-level=
+
+# Allow wildcard imports from modules that define __all__.
+allow-wildcard-with-all=no
+
+[REFACTORING]
+
+# Maximum number of nested blocks for function / method body
+max-nested-blocks=5
+
+[STRING]
+
+# This flag controls whether inconsistent-quotes generates a warning when the
+# character used as a quote delimiter is used inconsistently within a module.
+check-quote-consistency=yes
+
+# Starter .pylintrc file: https://gist.github.com/TrinityChristiana/8a9bd3f8a1c95755d45c71dddfcc973b

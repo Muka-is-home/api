@@ -16,16 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers #https://www.django-rest-framework.org/api-guide/routers/
-from api.views import ShopItemView, LogoView, EmailView, SearchView
-
-router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'emails', EmailView, 'email')
-router.register(r'shop', ShopItemView, 'shop_item')
-router.register(r'logos', LogoView, 'logo')
-router.register(r'search', SearchView, 'search')
+from api.urls import router
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path("api/", include(router.urls)),
     path("admin/", admin.site.urls),
 ]
