@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 class EmailView(ViewSet):
     """Email views"""
 
-    def list(self, _):
+    def list(self, request):
         """test sending email for Muka"""
 
         email = EmailMessage(
