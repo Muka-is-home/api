@@ -16,7 +16,6 @@ repos:
 -   repo: local
     hooks:
     -   id: pylint
-        exclude: ^server/
         name: pylint
         entry: pylint
         language: system
@@ -26,4 +25,3 @@ repos:
     rev: v1.5.4  # Use the sha / tag you want to point at
     hooks:
     -   id: autopep8
-        exclude: ^server/

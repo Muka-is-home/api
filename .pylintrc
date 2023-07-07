@@ -1,9 +1,12 @@
-[MAIN]
+[MASTER]
+django-settings-module=app.settings
+ignore-paths=^api/migrations/.*$
 
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-    pylint.extensions.no_self_use
+    pylint.extensions.no_self_use,
+    pylint_django
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.
@@ -38,9 +41,10 @@ confidence=
 disable=
     broad-except,
     imported-auth-user,
-    missing-class-docstring,
+    missing-docstring,
     no-self-use,
-    abstract-method
+    abstract-method,
+    import-outside-toplevel
 
 [REPORTS]
 
@@ -139,8 +143,6 @@ no-docstring-rgx=__.*__
 # Maximum number of arguments for function / method
 max-args=10
 
-max-complexity=10
-
 [IMPORTS]
 
 # List of modules that can be imported at any level, not just the top level
@@ -149,11 +151,6 @@ allow-any-import-level=
 
 # Allow wildcard imports from modules that define __all__.
 allow-wildcard-with-all=no
-
-[DEPRECATED_BUILTINS]
-
-# List of builtins function names that should not be used, separated by a comma
-bad-functions=map,input
 
 [REFACTORING]
 
