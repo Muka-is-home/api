@@ -1,6 +1,6 @@
 # https://www.django-rest-framework.org/api-guide/routers/
 from rest_framework import routers
-from .views import ShopItemView, LogoView, EmailView, ContentView
+from .views import ShopItemView, LogoView, EmailView
 
 
 router = routers.DefaultRouter(trailing_slash=False)

@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from api.urls import router
-from api.views import ContentView
+from api.views import ContentView, SpecializationView
 
 urlpatterns = [
     path("api/", include(router.urls)),
     path("admin/", admin.site.urls),
-    path("api/content", ContentView.as_view())
+    path("api/content", ContentView.as_view()),
+    path("api/specializations", SpecializationView.as_view()),
+    
 ]
