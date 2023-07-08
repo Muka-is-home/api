@@ -1,0 +1,23 @@
+[
+  {
+    "model": "api.contenttype",
+    "pk": 1,
+    "fields": {
+      "name": "blog"
+    }
+  },
+  {
+    "model": "api.contenttype",
+    "pk": 2,
+    "fields": {
+      "name": "resource"
+    }
+  },
+  {
+    "model": "api.contenttype",
+    "pk": 3,
+    "fields": {
+      "name": "page"
+    }
+  }
+]

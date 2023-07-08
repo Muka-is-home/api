@@ -1,0 +1,18 @@
+[
+  {
+    "model": "api.contenttag",
+    "pk": 1,
+    "fields": {
+      "tag": 1,
+      "content": 2
+    }
+  },
+  {
+    "model": "api.contenttag",
+    "pk": 2,
+    "fields": {
+      "tag": 2,
+      "content": 1
+    }
+  }
+]
