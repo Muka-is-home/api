@@ -8,7 +8,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 # pylint: disable=wrong-import-position
-from utils import get_env, get_env_names  # noqa
+from utils import get_env  # noqa
 from scripts.heroku_commands import add_heroku_remotes  # noqa
 # pylint: enable=wrong-import-position
 
@@ -60,11 +60,11 @@ if __name__ == "__main__":
             os.system(
                 "pipenv install")
 
-        env_var_names = get_env_names()
-        for v in env_var_names:
-            prod_v = f"PROD_{v}"
-            os.system(
-                f"heroku config:set {v}={env(prod_v)}")
+        # env_var_names = get_env_names()
+        # for v in env_var_names:
+        #     prod_v = f"PROD_{v}"
+        #     os.system(
+        #         f"heroku config:set {v}={env(prod_v)}")
         os.system("heroku config")
 
         active_branch = repo.active_branch
