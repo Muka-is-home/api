@@ -1,0 +1,16 @@
+[
+  {
+    "model": "api.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Blog"
+    }
+  },
+  {
+    "model": "api.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Resource"
+    }
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "model": "api.usertype",
+    "pk": 1,
+    "fields": {
+      "name": "Realtor"
+    }
+  },
+  {
+    "model": "api.usertype",
+    "pk": 2,
+    "fields": {
+      "name": "Vendor"
+    }
+  },
+  {
+    "model": "api.usertype",
+    "pk": 3,
+    "fields": {
+      "name": "Admin"
+    }
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "model": "api.usercounty",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "county": 1
+    }
+  },
+  {
+    "model": "api.usercounty",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "county": 2
+    }
+  },
+  {
+    "model": "api.usercounty",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "county": 3
+    }
+  }
+]
