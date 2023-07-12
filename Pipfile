@@ -8,6 +8,7 @@ django = "==4.2.3"
 djangorestframework = "==3.14.0"
 django-cors-headers = "==4.1.0"
 django-environ = "==0.10.0"
+django-filter = "==23.2"
 
 [dev-packages]
 pylint-django = "==2.5.3"
