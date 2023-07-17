@@ -23,6 +23,5 @@ urlpatterns = [
     path("api/", include(router.urls)),
     path("admin/", admin.site.urls),
     path("api/content", ContentView.as_view()),
-    path("api/specializations", SpecializationView.as_view()),
-    
+    path("api/vendor_services", SpecializationView.as_view()),
 ]
