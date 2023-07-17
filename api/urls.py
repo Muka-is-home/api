@@ -1,9 +1,16 @@
 # https://www.django-rest-framework.org/api-guide/routers/
 from rest_framework import routers
-from .views import ShopItemView, LogoView, EmailView
+from django.urls import path, include
+from .views import ShopItemView, LogoView, EmailView, ContentView, SpecializationView
 
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'emails', EmailView, 'email')
 router.register(r'shop', ShopItemView, 'shop_item')
 router.register(r'logos', LogoView, 'logo')
+
+urlpatterns = [
+    path('api/', include(router.urls)),
+    path('api/content', ContentView.as_view()),
+    path('api/vendor_services', SpecializationView.as_view())
+]
