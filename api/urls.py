@@ -13,5 +13,5 @@ router.register(r'search', SearchView, 'search')
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/content', ContentView.as_view()),
-    path('api/vendor_services', SpecializationView.as_view())
+    path('api/vendorServices', SpecializationView.as_view())
 ]
