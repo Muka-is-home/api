@@ -59,8 +59,7 @@ REST_FRAMEWORK = {
     #     "rest_framework.permissions.IsAuthenticated",
     # ],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
-    "SEARCH_PARAM": "filter",
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination"
+    "SEARCH_PARAM": "filter"
 }
 
 MIDDLEWARE = [
