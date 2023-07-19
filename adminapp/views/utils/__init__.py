@@ -1,0 +1,1 @@
+from .custom_list_view import CustomAdminListView
