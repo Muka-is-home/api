@@ -16,8 +16,15 @@ Including another URLconf
 """
 from api.urls import urlpatterns as api_urlpatterns
 from adminapp.urls import urlpatterns as admin_urlpatterns
+from django.urls import path
+from django.views.generic import TemplateView
 
-urlpatterns = list()
+urlpatterns = [
+    path('css/main.css', TemplateView.as_view(
+        template_name='adminapp/styles/main.css',
+        content_type='text/css')
+    )
+]
 
 urlpatterns += api_urlpatterns
 urlpatterns += admin_urlpatterns
