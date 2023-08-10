@@ -17,7 +17,7 @@ class VendorView(ViewSet):
         except User.DoesNotExist:
             response = {'message': 'No vendor matching that id' }
 
-        return Response(response)
+        return Response(response, status=status.HTTP_200_OK)
 
     def list(self, request):
         """returns list of Vendors"""
@@ -27,5 +27,5 @@ class VendorView(ViewSet):
             vendors = vendors.filter(user_specialization__specialization__tag_name=specialty)
 
         serializer = UserSerializer(vendors, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
