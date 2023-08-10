@@ -3,7 +3,7 @@
     "model": "api.content",
     "pk": 1,
     "fields": {
-      "title": "Demystifying Mortgage Lending: Your Key to Unlocking Homeownership",
+      "title": "Demystifying Mortgage Lending: Your Key to Unlocking",
       "body": "Embarking on the journey to homeownership is an exciting milestone, but navigating the world of mortgage lending can be overwhelming. The complexities of loan types, interest rates, credit scores, and down payments often leave aspiring homeowners feeling lost. However, fear not! In this blog post, we will demystify mortgage lending, providing you with essential knowledge and empowering you to make informed decisions. Let's dive in!",
       "author": 1,
       "content_type": 1,
@@ -14,7 +14,7 @@
     "model": "api.content",
     "pk": 2,
     "fields": {
-      "title": "Unveiling the Hidden Truth: The Importance of Home Inspections",
+      "title": "Unveiling Hidden Truth: Importance of Home Inspections",
       "body": "A comprehensive home inspection is a critical step in the homebuying process, providing invaluable insights into the property's condition. In this blog post, we highlight the significance of home inspections. From uncovering hidden flaws to ensuring your investment's worth, professional inspections offer peace of mind. Expert inspectors meticulously assess the structure, electrical systems, plumbing, and more, alerting you to potential issues. Armed with this knowledge, you can negotiate repairs, budget for future maintenance, and make an informed decision. Don't underestimate the power of a thorough home inspection – it's your key to a secure and sound investment.",
       "author": 2,
       "content_type": 1,
