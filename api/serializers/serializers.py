@@ -6,8 +6,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','name', 'website', 'bio', 'email')
-        depth = 2
+        fields = ('id','name', 'website', 'bio', 'email', 'user_type')
+        depth = 1
 
     email = serializers.EmailField(source='user.email')
 

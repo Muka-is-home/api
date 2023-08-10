@@ -22,5 +22,17 @@
       "user_type": 2,
       "active": 1
     }
+  },
+  {
+    "model": "api.user",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "name": "Trinity Christiana Terry",
+      "website": "https://www.github.com/Trinity",
+      "bio": "Vendor extraordinaire",
+      "user_type": 2,
+      "active": 1
+    }
   }
 ]
