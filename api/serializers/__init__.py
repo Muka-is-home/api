@@ -1,1 +1,1 @@
-from .serializers import UserSerializer, ContentSerializer
+from .serializers import UserSerializer, ContentSerializer, ContentTypeSerializer

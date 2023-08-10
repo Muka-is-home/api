@@ -1,0 +1,20 @@
+{% extends "adminapp/base/index.html" %} // Inherits all the components from base template,
+including the header and footer {% block content %}
+<div class="main_content">
+  <ul>
+    <li>title: {{content.title}}</li>
+    <li>author: {{content.author.name}}</li>
+    <li>content_type: {{content.content_type.name}}</li>
+    <li>body: {{content.body}}</li>
+    <li>date: {{content.date}}</li>
+  </ul>
+
+  <form action="{% url 'single_content' content.id %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="actual_method" value="DELETE" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+  <a role="button" href="{% url 'editcontent' content.id 'edit'%}" class="btn btn-primary">Edit</a>
+
+  {% endblock %}
+</div>
