@@ -3,28 +3,63 @@
     "model": "api.specialization",
     "pk": 1,
     "fields": {
-      "tag_name": "Agent"
+      "tag_name": "General Contractors",
+      "description": "default description",
+      "on_homepage": true
     }
   },
   {
     "model": "api.specialization",
     "pk": 2,
     "fields": {
-      "tag_name": "Inspector"
+      "tag_name": "Mortgage Services",
+      "description": "default description",
+      "on_homepage": true
     }
   },
   {
     "model": "api.specialization",
     "pk": 3,
     "fields": {
-      "tag_name": "Contractor"
+      "tag_name": "HVAC",
+      "description": "default description",
+      "on_homepage": true
     }
   },
   {
     "model": "api.specialization",
     "pk": 4,
     "fields": {
-      "tag_name": "Lender"
+      "tag_name": "Plumbing",
+      "description": "default description",
+      "on_homepage": true
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 5,
+    "fields": {
+      "tag_name": "Electrical",
+      "description": "default description",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 6,
+    "fields": {
+      "tag_name": "Inspections",
+      "description": "default description",
+      "on_homepage": true
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 7,
+    "fields": {
+      "tag_name": "Siding and Exterior",
+      "description": "default description",
+      "on_homepage": true
     }
   }
 ]
