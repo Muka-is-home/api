@@ -60,9 +60,13 @@ REST_FRAMEWORK = {
     # "DEFAULT_PERMISSION_CLASSES": [
     #     "rest_framework.permissions.IsAuthenticated",
     # ],
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'SEARCH_PARAM': 'filter'
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "SEARCH_PARAM": "filter"
 }
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.AllowAllUsersModelBackend"
+]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -80,7 +84,8 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = loads(env("CORS_ORIGIN_WHITELIST"))
 
 ROOT_URLCONF = "app.urls"
-
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 10
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
