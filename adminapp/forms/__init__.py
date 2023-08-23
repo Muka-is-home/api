@@ -1,1 +1,1 @@
-from .forms import CustomAuthenticationForm
+from .forms import CustomAuthenticationForm, CustomPasswordResetForm
