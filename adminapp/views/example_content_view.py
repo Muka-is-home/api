@@ -1,9 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from api.models import Content, User, ContentType
 from api.serializers import ContentSerializer, UserSerializer, ContentTypeSerializer
 
-@login_required(login_url="login")
 def content_view(request, content_id=None, is_edit=None):
     request_method = request.method
 

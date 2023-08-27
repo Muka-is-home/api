@@ -13,7 +13,7 @@ class MyLoginView(LoginView):
         if self.request.user.is_active and self.request.user.is_staff:
             return reverse_lazy('index')
         elif self.request.user.is_active and not self.request.user.is_staff:
-            return reverse_lazy('editcontent')
+            return reverse_lazy('single_content', args=[1])
         return reverse_lazy('content')
 
     def form_invalid(self, form):

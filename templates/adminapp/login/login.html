@@ -1,4 +1,4 @@
-{% extends "adminapp/base/index.html" %}   // Inherits all the components from base template, including the header and footer
+{% extends "adminapp/base/index.html" %}
 
 {%block content%}
   <div class="center">
@@ -13,9 +13,9 @@
 	        	{% endif %}
 		{% endfor %}
 		
-		<input type="submit" value="Login" class="btn btn-primary full-width">
+		<input type="submit" value="Login" class="btn btn-primary">
 		<hr>
-		<p class="text-center">Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+		{% comment %} <p class="text-center">Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p> {% endcomment %}
 {% comment %} 		<p class="text-center">Don't have a account? <a href="{% url 'signup' %}">Join Now</a></p>
  {% endcomment %}		{% if messages %}
 <div class="messages">
