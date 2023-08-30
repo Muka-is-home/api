@@ -3,8 +3,8 @@
     "model": "api.specialization",
     "pk": 1,
     "fields": {
-      "tag_name": "General Contractors",
-      "description": "default description",
+      "tag_name": "HVAC",
+      "description": "An HVAC company specializes in managing indoor environments. They install, repair, and maintain heating, cooling, and ventilation systems for various spaces. Ensuring comfort, energy efficiency, and air quality, they offer expertise in regulating temperatures and airflow, enhancing occupant well-being in residential, commercial, and industrial settings.",
       "on_homepage": true
     }
   },
@@ -12,8 +12,8 @@
     "model": "api.specialization",
     "pk": 2,
     "fields": {
-      "tag_name": "Mortgage Services",
-      "description": "default description",
+      "tag_name": "Roofing",
+      "description": "A roofing company specializes in roof construction and maintenance. They install, repair, and replace roofs for residential, commercial, and industrial structures. With expertise in various materials and techniques, they ensure durable, weather-resistant roofing solutions, safeguarding buildings from the elements and maintaining structural integrity while enhancing aesthetics.",
       "on_homepage": true
     }
   },
@@ -21,8 +21,8 @@
     "model": "api.specialization",
     "pk": 3,
     "fields": {
-      "tag_name": "HVAC",
-      "description": "default description",
+      "tag_name": "Moving",
+      "description": "A moving company offers relocation services for individuals and businesses. They manage packing, loading, transportation, and unloading of belongings. With expertise in logistics, they ensure a smooth transition, whether for local or long-distance moves. Their goal is to simplify the moving process, minimizing stress and ensuring the safety of possessions.",
       "on_homepage": true
     }
   },
@@ -31,7 +31,7 @@
     "pk": 4,
     "fields": {
       "tag_name": "Plumbing",
-      "description": "default description",
+      "description": "A plumbing company focuses on managing water systems. They install, repair, and maintain pipes, fixtures, and drainage systems for residential, commercial, and industrial properties. Their expertise ensures proper water distribution, sewage disposal, and gas flow, safeguarding functionality and hygiene while addressing leaks, clogs, and plumbing emergencies.",
       "on_homepage": true
     }
   },
@@ -39,8 +39,8 @@
     "model": "api.specialization",
     "pk": 5,
     "fields": {
-      "tag_name": "Electrical",
-      "description": "default description",
+      "tag_name": "Interior Design",
+      "description": "An interior design company specializes in creating functional and aesthetically pleasing indoor spaces. They collaborate with clients to conceptualize layouts, select furnishings, colors, and décor elements. With a keen understanding of design principles, they enhance the ambiance and functionality of residential, commercial, or institutional interiors, reflecting clients' preferences and optimizing spatial utilization.",
       "on_homepage": false
     }
   },
@@ -48,8 +48,8 @@
     "model": "api.specialization",
     "pk": 6,
     "fields": {
-      "tag_name": "Inspections",
-      "description": "default description",
+      "tag_name": "Flooring, Handymen",
+      "description": "A flooring company focuses on installing and maintaining various types of flooring materials, enhancing the aesthetics and functionality of indoor spaces. A handyman service provides a range of general repair and maintenance tasks for homes or businesses. Both offer expertise in their respective areas, ensuring quality workmanship and improving the overall condition and appearance of properties.",
       "on_homepage": true
     }
   },
@@ -57,9 +57,81 @@
     "model": "api.specialization",
     "pk": 7,
     "fields": {
-      "tag_name": "Siding and Exterior",
-      "description": "default description",
+      "tag_name": "Electrician",
+      "description": "An electrician specializes in electrical systems for residential, commercial, and industrial settings. They install, repair, and maintain wiring, circuits, and fixtures, ensuring safe and efficient electrical distribution. With expertise in troubleshooting and adherence to safety codes, they address power-related issues, offer upgrades, and enhance energy efficiency, promoting reliable and secure electrical usage.",
       "on_homepage": true
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 8,
+    "fields": {
+      "tag_name": "Housekeeping",
+      "description": "Housekeeping services involve the professional cleaning and maintenance of residential or commercial spaces. These services encompass tasks such as cleaning floors, surfaces, and fixtures, dusting, vacuuming, and organizing. Housekeeping professionals ensure a tidy and organized environment, contributing to cleanliness, comfort, and overall well-being for occupants or customers.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 9,
+    "fields": {
+      "tag_name": "Landscaping",
+      "description": "Landscaping companies specialize in outdoor environment design and maintenance. They create and enhance outdoor spaces by planning and implementing features such as gardens, lawns, trees, shrubs, pathways, and hardscapes. With expertise in plant selection, layout, and aesthetics, they transform landscapes into visually appealing and functional areas, contributing to curb appeal, ecological balance, and outdoor enjoyment.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 10,
+    "fields": {
+      "tag_name": "Painters",
+      "description": "Painters are professionals who apply paint and coatings to various surfaces, such as walls, ceilings, and furniture. They specialize in enhancing the aesthetic appeal of spaces through color selection and precise application techniques. Painters prepare surfaces, apply primers, and use brushes, rollers, or spray equipment to achieve smooth and even finishes. Whether for interior or exterior projects in residential, commercial, or industrial settings, painters contribute to transforming and refreshing spaces while protecting surfaces from wear and tear.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 11,
+    "fields": {
+      "tag_name": "Remodeling",
+      "description": "Remodeling companies specialize in renovating and transforming existing spaces. They offer comprehensive services for updating and improving homes or commercial properties. This includes structural changes, interior redesign, and functional enhancements. Remodeling experts collaborate with clients to conceptualize, plan, and execute projects that modernize spaces, optimize layouts, and upgrade aesthetics, often involving tasks like demolition, construction, plumbing, and electrical work to create renewed and appealing environments.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 12,
+    "fields": {
+      "tag_name": "Home Inspectors",
+      "description": "Home inspectors assess the condition and safety of residential properties. They conduct thorough examinations of a property's structural and mechanical components, including the foundation, roofing, plumbing, electrical systems, and more. Home inspectors identify potential issues, provide detailed reports, and offer insights into necessary repairs or maintenance. Their expertise helps buyers and sellers make informed decisions about real estate transactions, ensuring transparency and peace of mind by evaluating the overall condition and safety of a home.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 13,
+    "fields": {
+      "tag_name": "Homeowners Insurance",
+      "description": "Homeowners insurance provides financial protection for individuals who own residential properties. It covers a range of risks, including damage to the home's structure, personal belongings, and liability for injuries or damages to others occurring on the property. Homeowners pay a premium for this insurance, and in return, the policy offers reimbursement or coverage for repairs, replacement, or legal costs related to covered events like fires, theft, storms, and more. Homeowners insurance offers peace of mind by mitigating potential financial losses and providing support in unexpected situations.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 14,
+    "fields": {
+      "tag_name": "Garage Repairs",
+      "description": "Garage repair services focus on fixing and maintaining garage structures and components. These services encompass repairs to garage doors, openers, springs, tracks, and any mechanical or electrical issues. Garage repair professionals ensure smooth operation, address safety concerns, and provide solutions to common problems like door misalignment, malfunctioning openers, and damaged parts. By ensuring proper functionality and security, garage repair services contribute to the convenience and safety of homeowners while prolonging the life of the garage and its components.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 15,
+    "fields": {
+      "tag_name": "Other",
+      "description": "Other Services",
+      "on_homepage": false
     }
   }
 ]
