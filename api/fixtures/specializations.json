@@ -133,5 +133,122 @@
       "description": "Other Services",
       "on_homepage": false
     }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 16,
+    "fields": {
+      "tag_name": "Buyers",
+      "description": "Buyers in real estate transactions are individuals or entities seeking properties for purchase. They assess listings, visit properties, negotiate prices, and conduct due diligence. Their preferences, budget, and goals drive decisions. Financing options and market trends influence their choices. Diligent research and expert guidance aid informed purchases.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 17,
+    "fields": {
+      "tag_name": "Sellers",
+      "description": "Sellers in real estate transactions are property owners aiming to sell their assets. They prepare listings, showcase properties, negotiate offers, and disclose property conditions. Their pricing strategy, timing, and market awareness impact outcomes. Economic factors and local trends shape their decisions. Expert advice and effective marketing enhance successful sales.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 18,
+    "fields": {
+      "tag_name": "Commercial Sales",
+      "description": "Commercial sales involve the buying and selling of properties intended for business purposes. Buyers seek spaces for offices, retail, or industrial use, considering location, amenities, and potential ROI. Sellers market properties, highlighting income potential and location advantages. Due diligence, market analysis, and negotiation skills are crucial for successful commercial transactions.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 19,
+    "fields": {
+      "tag_name": "Commercial Sales",
+      "description": "Commercial sales involve the buying and selling of properties intended for business purposes. Buyers seek spaces for offices, retail, or industrial use, considering location, amenities, and potential ROI. Sellers market properties, highlighting income potential and location advantages. Due diligence, market analysis, and negotiation skills are crucial for successful commercial transactions.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 20,
+    "fields": {
+      "tag_name": "Property Manager",
+      "description": "A property manager oversees real estate assets on behalf of owners. They handle rent collection, tenant relations, maintenance, and property upkeep. They advertise vacancies, screen tenants, and enforce leases. Financial reporting, budgeting, and risk management are key responsibilities. Property managers strive to maximize property value and ensure smooth operations.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 21,
+    "fields": {
+      "tag_name": "Investor",
+      "description": "An investor in real estate allocates funds to acquire properties for profit. They analyze market trends, property potential, and risk factors. Investment strategies range from rental income to property flipping or development. Financing options and tax implications influence decisions. Successful investors conduct thorough research, due diligence, and manage portfolios for long-term gains.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 22,
+    "fields": {
+      "tag_name": "Relocation Specialist",
+      "description": "A relocation specialist assists individuals or companies in moving to new locations. They provide guidance on housing options, schools, and local amenities. Tailoring recommendations to specific needs, they ensure a smooth transition. Cultural insights, legal requirements, and logistical support are offered to ease the relocation process and help clients settle effectively.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 23,
+    "fields": {
+      "tag_name": "Commercial Leasing",
+      "description": "Commercial leasing involves renting properties for business purposes. Lessors own properties and seek lessees to occupy them. Negotiations cover lease terms, rent rates, and responsibilities for maintenance and repairs. Lessees evaluate spaces based on suitability, location, and costs. A well-drafted lease agreement protects both parties' interests and outlines lease duration, rent escalation, and other terms.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 24,
+    "fields": {
+      "tag_name": "VA",
+      "description": "A VA loan, offered by the U.S. Department of Veterans Affairs, aids eligible veterans and active-duty personnel in home purchases. With benefits like no down payment, competitive rates, and no private mortgage insurance, it eases homeownership. A Certificate of Eligibility is needed, making it accessible to military servicemembers.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 25,
+    "fields": {
+      "tag_name": "First Time Home Buyer",
+      "description": "A realtor specializing in first-time home buyers guides novices through the purchasing process. They simplify property search, educate about financing options, and offer advice on offers and negotiations. Their expertise alleviates concerns, ensuring a smooth transition into homeownership for newcomers.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 26,
+    "fields": {
+      "tag_name": "Short Sale",
+      "description": "A short sale occurs when a property is sold for less than the outstanding mortgage balance. Typically done to avoid foreclosure, the lender agrees to the sale, forgiving the remaining debt. This benefits sellers facing financial hardship but requires negotiations and lender approval for completion.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 27,
+    "fields": {
+      "tag_name": "Foreclosure",
+      "description": "Foreclosure is a legal process where a lender seizes and sells a property due to the owner's inability to meet mortgage payments. It occurs when mortgage obligations aren't met, leading to property loss. The lender can then sell the property to recover the debt, often resulting in financial difficulties for the homeowner.",
+      "on_homepage": false
+    }
+  },
+  {
+    "model": "api.specialization",
+    "pk": 28,
+    "fields": {
+      "tag_name": "REO Specialist",
+      "description": "An REO (Real Estate Owned) specialist manages properties that a bank or lender has acquired through foreclosure. They handle property preservation, valuation, marketing, and sales. REO specialists aim to maximize returns for the lender while ensuring efficient disposal of distressed assets.",
+      "on_homepage": false
+    }
   }
 ]
