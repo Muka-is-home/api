@@ -1,0 +1,29 @@
+[
+  {
+    "model": "api.userlicense",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "state": 46,
+      "license_no": "423785"
+    }
+  },
+  {
+    "model": "api.userlicense",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "state": 3,
+      "license_no": "31872567"
+    }
+  },
+  {
+    "model": "api.userlicense",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "state": 27,
+      "license_no": "0091735"
+    }
+  }
+]

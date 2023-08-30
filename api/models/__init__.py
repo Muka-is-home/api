@@ -11,3 +11,4 @@ from .user_county import UserCounty
 from .user_specialization import UserSpecialization
 from .user_type import UserType
 from .user import User
+from .user_license import UserLicense

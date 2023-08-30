@@ -6,9 +6,16 @@
       "user": 1,
       "name": "Justin Ferwerda",
       "website": "https://github.com/Justin-Ferwerda",
-      "bio": "I am testing MUKA",
+      "bio": "realtor",
       "user_type": 1,
-      "active": 1
+      "company": "RE/MAX Choice Properties",
+      "company_address": "615 Main St #204, Nashville, TN 37206",
+      "company_phone": "(615) 227-1514",
+      "contact_no": "(615) 339-8465",
+      "facebook": "https://www.facebook.com/",
+      "instagram": "https://www.instagram.com/",
+      "tiktok": "https://www.tiktok.com/",
+      "image": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fscissortailfinancial.com%2Fmedia%2Fimages%2Frealtor.jpg&tbnid=614Wpsc8c3dIsM&vet=12ahUKEwio_eftooOBAxV1tIkEHVWNA6sQMygPegUIARCTAQ..i&imgrefurl=https%3A%2F%2Fscissortailfinancial.com%2Ftulsa_mortgage_home_loan_resources%2Fi-am-a-realtor&docid=oigekcJJwf2-DM&w=500&h=350&q=realtor&ved=2ahUKEwio_eftooOBAxV1tIkEHVWNA6sQMygPegUIARCTAQ"
     }
   },
   {
@@ -18,9 +25,16 @@
       "user": 2,
       "name": "Natalie Ferwerda",
       "website": "https://www.instagram.com/natalieriveraferwerda/?hl=en",
-      "bio": "MUKA tester",
+      "bio": "vendor",
       "user_type": 2,
-      "active": 1
+      "company": "Hiller",
+      "company_address": "915 Murfreesboro Pike Nashville, TN 37217",
+      "company_phone": "(615) 857-5441",
+      "contact_no": "(615) 760-8321",
+      "facebook": "https://www.facebook.com/",
+      "instagram": "https://www.instagram.com/",
+      "tiktok": "https://www.tiktok.com/",
+      "image": "https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D100075856586662&tbnid=1YmO0IKjeIigcM&vet=12ahUKEwio_eftooOBAxV1tIkEHVWNA6sQMygEegQIARB9..i&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Famberbainrealtor%2F&docid=Jq8q6ISMMie77M&w=1638&h=2048&q=realtor&ved=2ahUKEwio_eftooOBAxV1tIkEHVWNA6sQMygEegQIARB9"
     }
   },
   {
@@ -30,9 +44,16 @@
       "user": 3,
       "name": "Trinity Christiana Terry",
       "website": "https://www.github.com/Trinity",
-      "bio": "Vendor extraordinaire",
-      "user_type": 2,
-      "active": 1
+      "bio": "admin",
+      "user_type": 3,
+      "company": "Muka",
+      "company_address": "915 Murfreesboro Pike Nashville, TN 37217",
+      "company_phone": "(615) 857-5441",
+      "contact_no": "(615) 760-8321",
+      "facebook": "https://www.facebook.com/",
+      "instagram": "https://www.instagram.com/",
+      "tiktok": "https://www.tiktok.com/",
+      "image": "https://ca.slack-edge.com/T03F2SDTJ-UQU0KMB8U-c873b143cf25-512"
     }
   }
 ]
