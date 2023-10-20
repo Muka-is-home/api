@@ -1,0 +1,52 @@
+{% extends "adminapp/base/index.html" %}
+{% block content %}
+<div id="user-detail">
+  <img src="{{ user.image }}" alt="Avatar" class="img-fluid rounded-circle">
+
+  <table class="table table-striped">
+    <tr>
+        <td>Name:</td>
+        <td>{{ user.name }}</td>
+    </tr>
+    <tr>
+        <td>Website:</td>
+        <td><a href="{{ user.website }}" target="_blank">{{ user.website }}</a></td>
+    </tr>
+    <tr>
+        <td>Bio:</td>
+        <td>{{ user.bio }}</td>
+    </tr>
+    <tr>
+        <td>Company:</td>
+        <td>{{ user.company }}</td>
+    </tr>
+    <tr>
+        <td>Company Address:</td>
+        <td>{{ user.company_address }}</td>
+    </tr>
+    <tr>
+        <td>Company Phone #:</td>
+        <td>{{ user.company_phone }}</td>
+    </tr>
+    <tr>
+        <td>Personal Contact #:</td>
+        <td>{{ user.contact_no }}</td>
+    </tr>
+    <tr>
+        <td>Facebook Link:</td>
+        <td><a href="{{ user.facebook }}" target="_blank">{{ user.facebook }}</a></td>
+    </tr>
+    <tr>
+        <td>Instagram Link:</td>
+        <td><a href="{{ user.instagram }}" target="_blank">{{ user.instagram }}</a></td>
+    </tr>
+    <tr>
+        <td>Tiktok Link:</td>
+        <td><a href="{{ user.tiktok }}" target="_blank">{{ user.tiktok }}</a></td>
+    </tr>
+</table>
+{% if user.user == request.user %}
+    <a href="{% url 'edit_profile' user.id %}">Edit Profile</a>
+{% endif %}
+</div>
+{% endblock %}
