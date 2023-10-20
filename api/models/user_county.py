@@ -4,5 +4,5 @@ from .county import County
 
 
 class UserCounty(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_county')
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='counties')
   county = models.ForeignKey(County, on_delete=models.CASCADE)

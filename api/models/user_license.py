@@ -1,5 +1,6 @@
 from django.db import models
-from api.models import User, State
+from .user import User
+from .state import State
     
 class UserLicense(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='licenses')
