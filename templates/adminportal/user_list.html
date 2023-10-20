@@ -1,0 +1,92 @@
+{% extends "adminapp/base/index.html" %}
+{% block content %}
+<div class="user-list">
+  <h1>User List</h1>
+    <div class="filter-buttons">
+      <button type="button" class="btn btn-primary" id="filterAllUsers" data-filter="all">All Users</button>
+      <button type="button" class="btn btn-primary" id="filterApproved" data-filter="True">Approved Users</button>
+      <button type="button" class="btn btn-primary" id="filterNotApproved" data-filter="False">Waiting On Approval</button>
+    </div>
+
+    <form method="post" action="{% url 'update_approval' %}">
+        {% csrf_token %}
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Approved</th>
+                    <th>Rejected</th>
+                    <th>Ready For Approval</th>
+                    <th>Not Ready For Approval</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                {% for user in users %}
+                <div class="radio-group">
+                  <tr id="{{ user.active }}">
+                    <td><a href="mailto:{{ user.user.email }}">{{ user.user.email }}</a></td>
+                    <td><a href="{% url 'user_list' %}">{{ user.name }}</a></td>
+                    <td>
+                      <input type="radio" id="{{user.user.is_active}}" name="{{ user.id }}" value="approved--{{ user.id }}" {% if user.active %}checked{% endif %} disabled>
+                    </td>
+                    <td>
+                      <input type="radio" id="{{user.user.is_active}}" name="{{ user.id }}" value="rejected--{{user.id}}" {% if user.active is False %}checked{% endif %} disabled>
+                    </td>
+                    <td>
+                      <input type="radio" id="{{user.user.is_active}}" name="{{ user.id }}" value="ready--{{user.id}}" {% if user.ready_for_approval %}checked{% endif %} disabled>
+                    </td>
+                    <td>
+                      <input type="radio" id="{{user.user.is_active}}" name="no-toggle" {% if not user.user.is_active %}checked{% endif %} disabled>
+                    </td>
+                  </tr>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" id="toggleButton">Update Approval List</button>
+        <button type="submit" class="btn btn-primary">Submit Approval List</button>
+    </form>
+</div>
+<script>
+  function toggleRadios() {
+      const radios = document.querySelectorAll('input[type="radio"]');
+
+     
+      
+      radios.forEach(radio => {
+          if (radio.id === "True" && radio.name != "no-toggle") {
+            radio.disabled = !radio.disabled;
+          }
+      });
+  }
+
+  const toggleButton = document.getElementById('toggleButton');
+  toggleButton.addEventListener('click', toggleRadios);
+</script>
+<script>
+  const filterButtons = document.querySelectorAll('button[data-filter]');
+  const itemTable = document.getElementById('userTable');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const filterValue = button.getAttribute('data-filter');
+        filterRows(filterValue);
+    });
+  });
+
+  function filterRows(category) {
+    const rows = userTable.querySelectorAll('tr');
+    
+    rows.forEach(row => {
+        const isActive = row.getAttribute('id');
+        
+        if (category === 'all' || isActive === category) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+  }
+</script>
+{% endblock %}
