@@ -3,10 +3,10 @@
 <div class="container text-center mt-5">
   <div class="row">
       <div class="col">
-          <a href="{{% url 'realtor_profile' %}}" class="btn btn-primary" id="realtorButton">Realtor</a>
+          <a href="{% url 'profile' 'realtor' %}" class="btn btn-primary" id="realtorButton">Realtor</a>
       </div>
       <div class="col">
-          <a href="{{% url 'vendor_profile' %}}" class="btn btn-primary" id="vendorButton">Vendor</a>
+          <a href="{% url 'profile' 'vendor' %}" class="btn btn-primary" id="vendorButton">Vendor</a>
       </div>
   </div>
 </div>

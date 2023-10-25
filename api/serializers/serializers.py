@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import User, Content, Specialization, ContentType
+from api.models import User, Content, Specialization, ContentType, UserType
 from rest_framework.serializers import ModelSerializer
 
 class ContentTypeSerializer(ModelSerializer):
@@ -34,3 +34,10 @@ class SpecializationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Specialization
         fields = ('id', 'tag_name', 'description', 'on_homepage')
+
+class UserTypeSerializer(serializers.ModelSerializer):
+    """serializer for user types"""
+
+    class Meta:
+        model = UserType
+        fields = ('id', 'name')
