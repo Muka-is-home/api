@@ -112,9 +112,14 @@ def create_profile(request, type):
                 )
 
             user_data = UserFormSerializer(user_profile).data
-            return render(request, "adminapp/user_profile/user_detail.html", {
-        "user": user_data
-    })
+            if type == "realtor":
+                return render(request, "adminapp/user_profile_forms/user_licenses_form.html", {
+                "user": user_data
+                })
+            else:
+                return render(request, "adminapp/thank_you.html", {
+            "user": user_data
+        })
     
     user_types = UserType.objects.exclude(name="Admin")
     user_type_data = UserTypeSerializer(user_types, many=True).data
@@ -165,6 +170,7 @@ def user_licenses(request):
         email_to_muka.send()
         email_to_user.send()
 
+        user_data = UserFormSerializer(user_profile).data
         return render(request, "adminapp/thank_you.html", {
-            "user": user_profile
+            "user": user_data
         })
