@@ -1,0 +1,70 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+<div class="userEditForm">
+  <h5>* indicates required field</h5>
+  <form action="{% url 'edit_profile' user.id %}" method="POST" id="user_form">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name*</label>
+      <input type="text" class="form-control" id="profile-name" name="name"  value="{{ user.name }}" aria-describedby="nameHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="website" class="form-label">website*</label>
+      <input type="url" class="form-control" id="profile-website" name="website" value="{{ user.website }}" aria-describedby="bioHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="bio" class="form-label">bio*</label>
+      <textarea class="form-control" id="profile-bio" name="bio" aria-describedby="websiteHelp" rows="6" required>{{ user.bio }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="company" class="form-label">Company*</label>
+      <input type="text" class="form-control" id="profile-company" name="company" value="{{ user.company }}" aria-describedby="companyHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyAddress" class="form-label">Company address*</label>
+      <input type="address" class="form-control" id="profile-address" name="company_address" value="{{ user.company_address }}" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyPhone" class="form-label">Company Phone Number*</label>
+      <input type="tel" class="form-control" id="profile-company-phone" name="company_phone" value="{{ user.company_phone }}" aria-describedby="companyPhoneHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="contactNumber" class="form-label">Contact Number*</label>
+      <input type="tel" class="form-control" id="profile-contact-no" name="contact_no" value="{{ user.contact_no }}" aria-describedby="contactNumberHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="facebook" class="form-label">Facebook Link</label>
+      <input type="url" class="form-control" id="profile-facebook" name="facebook" value="{{ user.facebook }}" aria-describedby="facebookHelp">
+    </div>
+    <div class="mb-3">
+      <label for="instagram" class="form-label">Instagram Link</label>
+      <input type="url" class="form-control" id="profile-instagram" name="instagram" value="{{ user.instagram }}" aria-describedby="instagramHelp">
+    </div>
+    <div class="mb-3">
+      <label for="tiktok" class="form-label">TikTok Link</label>
+      <input type="url" class="form-control" id="profile-tiktok" name="tiktok" value="{{ user.tiktok }}" aria-describedby="tiktokkHelp">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL*</label>
+      <input type="url" class="form-control" id="profile-image" name="image" value="{{ user.image }}" aria-describedby="imagekHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="userType" class="form-label">User Type*</label>
+      <select class="form-select" aria-label="userTypeSelect" name="user_type" required>
+        <option selected>Choose Your Role</option>
+        {% for user_type in user_types %}
+          <option value="{{ user_type.id }}" {% if user.user_type.id == user_type.id %}selected{% endif %}>{{ user_type.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="specializations" class="form-label">Specializations</label>
+      {% for specialization in specializations %}
+          <input type="checkbox" name="specializations" value="{{ specialization.id }}" {% if specialization.id in user_specializations %}checked{% endif %}>{{ specialization.tag_name }}</input>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

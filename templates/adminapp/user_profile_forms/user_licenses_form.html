@@ -1,0 +1,47 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+<form action="{% url 'user_licenses' %}" method="POST", id="userLicenseForm">
+<div class="accordion" id="accordionExample">
+  {% for state in states %}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ state.id }}" aria-expanded="true" aria-controls="collapseOne">
+        {{ state.name }} <label for="userLicense" class="form-label">Enter your License #</label><input type="text" class="form-control" name="licenses" id="{{ state.id }}" aria-describedby="licenseHelp">
+      </button>
+    </h2>
+    <div id="{{ state.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        {% for county in counties %}
+          {% if county.state == state %}
+            <input type="checkbox" value="{{ county.id }}" name="counties">{{ county.name }}</input>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<script>
+  function prepareLicenseData() {
+
+      const licenses = document.querySelectorAll('input[name="licenses"]');
+      const userLicenses = [];
+      
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "userLicenses";
+      hiddenInput.value = userLicenses.join(', ');
+
+      const form = document.getElementById("userLicenseForm");
+      form.appendChild(hiddenInput);
+
+      for (let i = 0; i < licenses.length; i++) {
+          if (licenses[i].value) {
+            const userLicense = `${licenses[i].id}-${licenses[i].value}`
+            userLicenses.push(userLicense)
+          }
+        }
+  }
+</script>
+{% endblock %}
