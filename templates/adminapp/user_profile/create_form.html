@@ -1,0 +1,114 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+<div class="user_create_form">
+  <h5>* indicates required field</h5>
+  <form action="{% url 'user_create' %}" method="POST" id="user_form" onSubmit="prepareLicenseData">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name*</label>
+      <input type="text" class="form-control" id="profile-name" name="name" aria-describedby="nameHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="website" class="form-label">website*</label>
+      <input type="url" class="form-control" id="profile-website" name="website" aria-describedby="bioHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="bio" class="form-label">bio*</label>
+      <textarea class="form-control" id="profile-bio" name="bio" aria-describedby="websiteHelp" rows="6" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="company" class="form-label">Company*</label>
+      <input type="text" class="form-control" id="profile-company" name="company" aria-describedby="companyHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyAddress" class="form-label">Company address*</label>
+      <input type="address" class="form-control" id="profile-address" name="company_address" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyPhone" class="form-label">Company Phone Number*</label>
+      <input type="tel" class="form-control" id="profile-company-phone" name="company_phone" aria-describedby="companyPhoneHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="contactNumber" class="form-label">Contact Number*</label>
+      <input type="tel" class="form-control" id="profile-contact-no" name="contact_no" aria-describedby="contactNumberHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="facebook" class="form-label">Facebook Link</label>
+      <input type="url" class="form-control" id="profile-facebook" name="facebook" aria-describedby="facebookHelp">
+    </div>
+    <div class="mb-3">
+      <label for="instagram" class="form-label">Instagram Link</label>
+      <input type="url" class="form-control" id="profile-instagram" name="instagram" aria-describedby="instagramHelp">
+    </div>
+    <div class="mb-3">
+      <label for="tiktok" class="form-label">TikTok Link</label>
+      <input type="url" class="form-control" id="profile-tiktok" name="tiktok" aria-describedby="tiktokkHelp">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL*</label>
+      <input type="url" class="form-control" id="profile-image" name="image" aria-describedby="imagekHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="userType" class="form-label">User Type*</label>
+      <select class="form-select" aria-label="userTypeSelect" name="user_type" required>
+        <option selected>Choose Your Role</option>
+        {% for user_type in user_types %}
+          <option value="{{ user_type.id }}">{{ user_type.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="specializations" class="form-label">Specializations</label>
+      {% for specialization in specializations %}
+          <input type="checkbox" name="specializations" value="{{ specialization.id }}">{{ specialization.tag_name }}</input>
+      {% endfor %}
+    </div>
+    <div class="accordion" id="accordionExample">
+      {% for state in states %}
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ state.id }}" aria-expanded="true" aria-controls="collapseOne">
+            {{ state.name }} <label for="userLicense" class="form-label">Enter your License #</label><input type="text" class="form-control" name="licenses" id="{{ state.id }}" aria-describedby="licenseHelp">
+          </button>
+        </h2>
+        <div id="{{ state.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {% for county in counties %}
+              {% if county.state == state %}
+                <input type="checkbox" value="{{ county.id }}" name="counties">{{ county.name }}</input>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {{ form.as_p }}
+    <button type="button" onClick="prepareLicenseDataAndSubmit()" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<script>
+  function prepareLicenseData() {
+
+      const licenses = document.querySelectorAll('input[name="licenses"]');      
+      const requiredFields = document.querySelectorAll('[required]');
+      const userLicenses = [];
+      
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "userLicenses";
+      hiddenInput.value = userLicenses.join(', ');
+
+      const form = document.getElementById("user_form");
+      form.appendChild(hiddenInput);
+
+      for (let i = 0; i < licenses.length; i++) {
+          if (licenses[i].value) {
+            const userLicense = `${licenses[i].id}-${licenses[i].value}`
+            userLicenses.push(userLicense)
+          }
+        }
+  }
+</script>
+{% endblock %}
