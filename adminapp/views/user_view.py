@@ -122,14 +122,13 @@ def create_profile(request, type):
                 county_data = CountySerializer(counties, many=True).data
                 
                 return render(request, "adminapp/user_profile_forms/user_licenses_form.html", {
-                "user": user_data,
                 "states": state_data,
                 "counties": county_data
                 })
             else:
                 return render(request, "adminapp/thank_you.html", {
-            "user": user_data
-        })
+                "user": user_data
+                })
     
     user_types = UserType.objects.exclude(name="Admin")
     user_type_data = UserTypeSerializer(user_types, many=True).data

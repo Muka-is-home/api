@@ -6,6 +6,7 @@ from .user_type import UserType
 class User(models.Model):
     user = models.OneToOneField(AuthUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=55)
+    email = models.EmailField()
     website = models.URLField()
     bio = models.TextField()
     user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
