@@ -15,16 +15,16 @@
         
         <input type="submit" value="Login" class="btn btn-primary">
         <hr>
-        {% comment %} <p class="text-center">Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p> {% endcomment %}
-{% comment %}       <p class="text-center">Don't have a account? <a href="{% url 'signup' %}">Join Now</a></p>
- {% endcomment %}       {% if messages %}
-<div class="messages">
-    {% for message in messages %}
-    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
-    {% endfor %}
-</ul>
-{% endif %}
-    </form>
-</div>
+        <p class="text-center">Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+        <p class="text-center">Don't have an account? <a href="{% url 'signup' %}">Join Now</a></p>
+        {% if messages %}
+        <div class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        </form>
+    </div>
 
 {%endblock content%}
