@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from api.models import User, UserType, Specialization, UserSpecialization
+from django.core.mail import EmailMessage
+from utils import get_env
+from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import UserTypeSerializer, SpecializationSerializer
 
@@ -30,6 +32,8 @@ def edit_profile(request, pk):
             user.instagram = instagram
         if tiktok:
             user.tiktok = tiktok
+            
+        user.save()
 
         for specialization in UserSpecialization.objects.filter(user=user):
             specialization.delete()
@@ -41,7 +45,6 @@ def edit_profile(request, pk):
             specialization=spec
             )
 
-        user.save()
         user_data = UserFormSerializer(user).data
         return render(request, "adminapp/user_detail.html", {
             "user": user_data
@@ -124,3 +127,44 @@ def create_profile(request, type):
     "user_types": user_type_data,
     "specializations": specialization_data,
     })
+
+def user_licenses(request):
+    if request.method == 'POST':
+        for county in request.POST.getlist("counties"):
+            cty = County.objects.get(pk=county)
+            UserCounty.objects.create(
+                user=request.user,
+                county=cty
+            )
+
+        user_licenses = request.POST.get("userLicenses").split(",")
+        for user_license in user_licenses:
+            state_id, license_no = user_license.split("-")
+            state = State.objects.get(pk=int(state_id))
+            UserLicense.objects.create(
+                state=state,
+                user=request.user,
+                license_no = license_no
+            )
+
+        env = get_env(__file__)
+        user_profile = User.objects.get(user=request.user)
+        email_to_muka = EmailMessage(
+                    f'new Muka applicant - {user_profile.name}',
+                    f'{user_profile.name} has applied for a spot on Muka!',
+                    f'{env("EMAIL_HOST_USER")}',
+                    [env("EMAIL_HOST_USER")]
+                )
+        email_to_muka.send()
+        email_to_user = EmailMessage(
+                    f'Thanks for your application {user_profile.name}!',
+                    f'{user_profile.name}, We will review your profile and submit or reject you.',
+                    f'{env("EMAIL_HOST_USER")}',
+                    [user_profile.email]
+                )
+        email_to_muka.send()
+        email_to_user.send()
+
+        return render(request, "adminapp/thank_you.html", {
+            "user": user_profile
+        })
