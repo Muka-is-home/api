@@ -1,3 +1,3 @@
 from .login import UserLoginView
-from .user_detail import user_detail
+from .user_view import user_detail, edit_profile, user_create
 from .signup import signup
