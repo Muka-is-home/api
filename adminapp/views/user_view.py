@@ -3,7 +3,7 @@ from django.core.mail import EmailMessage
 from utils import get_env
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
-from api.serializers import UserTypeSerializer, SpecializationSerializer
+from api.serializers import UserTypeSerializer, SpecializationSerializer, StateSerializer, CountySerializer
 
 def edit_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
@@ -111,10 +111,20 @@ def create_profile(request, type):
                 specialization=spec
                 )
 
+            
             user_data = UserFormSerializer(user_profile).data
             if type == "realtor":
+                
+                states = State.objects.all()
+                state_data = StateSerializer(states, many=True).data
+
+                counties = County.objects.all()
+                county_data = CountySerializer(counties, many=True).data
+                
                 return render(request, "adminapp/user_profile_forms/user_licenses_form.html", {
-                "user": user_data
+                "user": user_data,
+                "states": state_data,
+                "counties": county_data
                 })
             else:
                 return render(request, "adminapp/thank_you.html", {

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import User, Content, Specialization, ContentType, UserType
+from api.models import User, Content, Specialization, ContentType, UserType, State, County
 from rest_framework.serializers import ModelSerializer
 
 class ContentTypeSerializer(ModelSerializer):
@@ -41,3 +41,16 @@ class UserTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserType
         fields = ('id', 'name')
+
+class StateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = State
+        fields = ('id', 'name', 'abbreviation')
+
+class CountySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = County
+        fields = ('id', 'name', 'state')
+        depth = 1
