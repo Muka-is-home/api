@@ -1,13 +1,9 @@
 {% extends "adminapp/base/index.html" %}
 {% block content %}
-<div class="container text-center mt-5">
-  <div class="row">
-      <div class="col">
-          <a href="{% url 'profile' 'realtor' %}" class="btn btn-primary" id="realtorButton">Realtor</a>
-      </div>
-      <div class="col">
-          <a href="{% url 'profile' 'vendor' %}" class="btn btn-primary" id="vendorButton">Vendor</a>
-      </div>
-  </div>
-</div>
+<h2>Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Sign up</button>
+</form>
 {%endblock content%}

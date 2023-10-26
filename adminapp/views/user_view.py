@@ -144,10 +144,11 @@ def create_profile(request, type):
 
 def user_licenses(request):
     if request.method == 'POST':
+        user_profile = User.objects.get(user=request.user)
         for county in request.POST.getlist("counties"):
             cty = County.objects.get(pk=county)
             UserCounty.objects.create(
-                user=request.user,
+                user=user_profile,
                 county=cty
             )
 
@@ -157,12 +158,11 @@ def user_licenses(request):
             state = State.objects.get(pk=int(state_id))
             UserLicense.objects.create(
                 state=state,
-                user=request.user,
+                user=user_profile,
                 license_no = license_no
             )
 
         env = get_env(__file__)
-        user_profile = User.objects.get(user=request.user)
         email_to_muka = EmailMessage(
                     f'new Muka applicant - {user_profile.name}',
                     f'{user_profile.name} has applied for a spot on Muka!',

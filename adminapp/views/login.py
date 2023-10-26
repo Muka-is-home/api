@@ -15,7 +15,7 @@ class UserLoginView(LoginView):
           if user.active:
             return reverse_lazy('user_detail', args=[user.id])
         except User.DoesNotExist:
-          return reverse_lazy('user_list')
+          return reverse_lazy('profile_signup')
 
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password!')
