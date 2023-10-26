@@ -1,7 +1,7 @@
 {% extends "adminapp/base/index.html" %}
 
 {% block content %}
-<form action="{% url 'user_licenses' %}" method="POST", id="userLicenseForm" onSubmit="prepareLicenseData()">
+<form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onSubmit="prepareLicenseData()">
   {% csrf_token %}
   <div class="accordion" id="accordionExample">
     {% for state in states %}
