@@ -119,7 +119,7 @@ def create_profile(request, type):
 
             
             user_data = UserFormSerializer(user_profile).data
-            if type == "realtor":
+            if type == "Realtor":
                 
                 states = State.objects.all()
                 state_data = StateSerializer(states, many=True).data
