@@ -14,6 +14,10 @@
       <input type="url" class="form-control" id="profile-website" name="website" aria-describedby="bioHelp" required>
     </div>
     <div class="mb-3">
+      <label for="email" class="form-label">email*</label>
+      <input type="email" class="form-control" id="profile-email" name="email" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
       <label for="bio" class="form-label">bio*</label>
       <textarea class="form-control" id="profile-bio" name="bio" aria-describedby="websiteHelp" rows="6" required></textarea>
     </div>
@@ -48,15 +52,6 @@
     <div class="mb-3">
       <label for="image" class="form-label">Image URL*</label>
       <input type="url" class="form-control" id="profile-image" name="image" aria-describedby="imagekHelp" required>
-    </div>
-    <div class="mb-3">
-      <label for="userType" class="form-label">User Type*</label>
-      <select class="form-select" aria-label="userTypeSelect" name="user_type" required>
-        <option selected>Choose Your Role</option>
-        {% for user_type in user_types %}
-          <option value="{{ user_type.id }}">{{ user_type.name }}</option>
-        {% endfor %}
-      </select>
     </div>
     <div class="mb-3">
       <label for="specializations" class="form-label">Specializations</label>

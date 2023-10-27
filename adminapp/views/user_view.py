@@ -76,11 +76,17 @@ def user_detail(request, pk):
 
 def create_profile(request, type):
     if request.method == "POST":
-            # process rest of profile form
-            user_type = UserType.objects.get(pk=request.POST.get("user_type"))
+        if User.objects.filter(email=request.POST.get("email")):
+            return render(request, "email_taken.html", {
+                "type": type
+            })
+        
+        else:
+            user_type = UserType.objects.get(name=type)
             user_profile = User(
                 user=request.user,
                 name=request.POST.get("name"),
+                email=request.POST.get("email"),
                 website=request.POST.get("website"),
                 bio=request.POST.get("bio"),
                 company=request.POST.get("company"),
@@ -129,16 +135,12 @@ def create_profile(request, type):
                 return render(request, "adminapp/thank_you.html", {
                 "user": user_data
                 })
-    
-    user_types = UserType.objects.exclude(name="Admin")
-    user_type_data = UserTypeSerializer(user_types, many=True).data
 
     specializations = Specialization.objects.all()
     specialization_data = SpecializationSerializer(specializations, many=True).data
 
     return render(request, "adminapp/user_profile_forms/profile_form.html", {
     "user": type,
-    "user_types": user_type_data,
     "specializations": specialization_data,
     })
 
