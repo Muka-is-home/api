@@ -1,7 +1,7 @@
 {% extends "adminapp/base/index.html" %}
 
 {% block content %}
-<form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onSubmit="prepareLicenseData()">
+<form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();">
   {% csrf_token %}
   <div class="accordion" id="accordionExample">
     {% for state in states %}
@@ -22,29 +22,28 @@
       </div>
     </div>
     {% endfor %}
+    <input type="hidden" name="userLicenses">
   </div>
   <button type="Submit" class="btn btn-primary">Submit</button>
 </form>
 <script>
   function prepareLicenseData() {
 
-      const licenses = document.querySelectorAll('input[name="licenses"]');
-      const userLicenses = [];
-      
-      const hiddenInput = document.createElement("input");
-      hiddenInput.type = "hidden";
-      hiddenInput.name = "userLicenses";
-      hiddenInput.value = userLicenses.join(', ');
+    const licenses = document.querySelectorAll('input[name="licenses"]');
+    const userLicenses = [];
 
-      const form = document.getElementById("userLicenseForm");
-      form.appendChild(hiddenInput);
+    for (let i = 0; i < licenses.length; i++) {
+      if (licenses[i].value) {
+        const userLicense = `${licenses[i].id}-${licenses[i].value}`
+        userLicenses.push(userLicense)
+      }
+    }
 
-      for (let i = 0; i < licenses.length; i++) {
-          if (licenses[i].value) {
-            const userLicense = `${licenses[i].id}-${licenses[i].value}`
-            userLicenses.push(userLicense)
-          }
-        }
+    const hiddenInput = document.querySelector('input[name="userLicenses"]');
+    hiddenInput.value = userLicenses.join(', ');
+    
+    return true;
+
   }
 </script>
 {% endblock %}
