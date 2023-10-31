@@ -1,29 +1,34 @@
 {% extends "adminapp/base/index.html" %}
 
 {%block content%}
-  <div class="center">
-      <form method="post" class="card" novalidate>
-        {% csrf_token %}
-        <h2 class="text-center">Log in to your account</h2>
-        {% for field in form %}
-                {{ field.label_tag }} 
-                {{ field }}
-                {% if field.errors %}
-                    <small>{{ field.errors|striptags }}</small> 
-                {% endif %}
-        {% endfor %}
-        
-        <input type="submit" value="Login" class="btn btn-primary">
-        <hr>
-        <p class="text-center">Don't have an account? <a href="{% url 'signup' %}">Join Now</a></p>
-        {% if messages %}
-        <div class="messages">
-        {% for message in messages %}
-        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
-        {% endfor %}
-        </ul>
-        {% endif %}
-        </form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <form method="post" class="card" novalidate>
+                    {% csrf_token %}
+                    <h2 class="text-center">Please Log In To Continue</h2>
+                    {% for field in form %}
+                            {{ field.label_tag }} 
+                            {{ field }}
+                            {% if field.errors %}
+                                <small>{{ field.errors|striptags }}</small> 
+                            {% endif %}
+                    {% endfor %}
+                    
+                    <input type="submit" value="Login" class="btn btn-primary">
+                    <hr>
+                    <p class="text-center">Don't have an account? <a href="{% url 'signup' %}">Join Now</a></p>
+                    {% if messages %}
+                    <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="text-center"{% endif %}><strong>{{ message }}</strong></p>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
     </div>
-
+</div>
 {%endblock content%}
