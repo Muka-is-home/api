@@ -77,7 +77,7 @@ def user_detail(request, pk):
 def create_profile(request, type):
     if request.method == "POST":
         if User.objects.filter(email=request.POST.get("email")):
-            return render(request, "email_taken.html", {
+            return render(request, "adminapp/email_taken.html", {
                 "type": type
             })
         
