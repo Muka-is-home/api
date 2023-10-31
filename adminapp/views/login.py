@@ -18,7 +18,7 @@ class UserLoginView(LoginView):
           elif user.active is None:
             return reverse_lazy('thank_you')
           else:
-            return reverse_lazy('rejected')
+            return reverse_lazy('rejection')
             
         except User.DoesNotExist:
           return reverse_lazy('profile_signup')

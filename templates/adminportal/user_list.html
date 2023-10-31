@@ -5,7 +5,7 @@
     <div class="filter-buttons">
       <button type="button" class="btn btn-primary" id="filterAllUsers" data-filter="all">All Users</button>
       <button type="button" class="btn btn-primary" id="filterApproved" data-filter="True">Approved Users</button>
-      <button type="button" class="btn btn-primary" id="filterNotApproved" data-filter="False">Waiting On Approval</button>
+      <button type="button" class="btn btn-primary" id="filterNotApproved" data-filter="False">Rejected Users</button>
     </div>
 
     <form method="post" action="{% url 'update_approval' %}">
@@ -17,8 +17,7 @@
                     <th>Username</th>
                     <th>Approved</th>
                     <th>Rejected</th>
-                    <th>Ready For Approval</th>
-                    <th>Not Ready For Approval</th>
+                    <th>Waiting For Approval</th>
                 </tr>
             </thead>
             <tbody id="userTable">
@@ -28,16 +27,13 @@
                     <td><a href="mailto:{{ user.user.email }}">{{ user.user.email }}</a></td>
                     <td><a href="{% url 'user_list' %}">{{ user.name }}</a></td>
                     <td>
-                      <input type="radio" id="{{user.user.is_active}}" name="{{ user.id }}" value="approved--{{ user.id }}" {% if user.active %}checked{% endif %} disabled>
+                      <input type="radio" id="{{user.active}}" name="{{ user.id }}" value="approved--{{ user.id }}" {% if user.active %}checked{% endif %} disabled>
                     </td>
                     <td>
-                      <input type="radio" id="{{user.user.is_active}}" name="{{ user.id }}" value="rejected--{{user.id}}" {% if user.active is False %}checked{% endif %} disabled>
+                      <input type="radio" id="{{user.active}}" name="{{ user.id }}" value="rejected--{{user.id}}" {% if user.active is False %}checked{% endif %} disabled>
                     </td>
                     <td>
                       <input type="radio" id="{{user.user.is_active}}" name="{{ user.id }}" value="ready--{{user.id}}" {% if user.ready_for_approval %}checked{% endif %} disabled>
-                    </td>
-                    <td>
-                      <input type="radio" id="{{user.user.is_active}}" name="no-toggle" {% if not user.user.is_active %}checked{% endif %} disabled>
                     </td>
                   </tr>
                 </div>
@@ -52,10 +48,8 @@
   function toggleRadios() {
       const radios = document.querySelectorAll('input[type="radio"]');
 
-     
-      
       radios.forEach(radio => {
-          if (radio.id === "True" && radio.name != "no-toggle") {
+          if (radio.id) {
             radio.disabled = !radio.disabled;
           }
       });

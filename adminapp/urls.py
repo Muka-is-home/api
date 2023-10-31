@@ -15,5 +15,5 @@ urlpatterns = [
   path(f"{app_name}/thank_you", TemplateView.as_view(
     template_name = "adminapp/thank_you.html"
   ), name="thank_you"),
-  path(f"{app_name}/rejected", TemplateView.as_view(template_name="adminapp/rejected.html"), name="rejected")
+  path(f"{app_name}/rejected", TemplateView.as_view(template_name="adminapp/rejection.html"), name="rejection")
 ]

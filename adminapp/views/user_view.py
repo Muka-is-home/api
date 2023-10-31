@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User as AuthUser
 from django.core.mail import EmailMessage
 from utils import get_env
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
@@ -70,7 +71,7 @@ def edit_profile(request, pk):
 def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
-    return render(request, "adminapp/user_profile/user_detail.html", {
+    return render(request, "adminapp/user_detail.html", {
         "user": user_data
     })
 
@@ -82,9 +83,10 @@ def create_profile(request, type):
             })
         
         else:
+            auth_user = AuthUser.objects.get(username=request.user)
             user_type = UserType.objects.get(name=type)
             user_profile = User(
-                user=request.user,
+                user=auth_user,
                 name=request.POST.get("name"),
                 email=request.POST.get("email"),
                 website=request.POST.get("website"),
@@ -132,6 +134,10 @@ def create_profile(request, type):
                 "counties": county_data
                 })
             else:
+                user_profile.ready_for_approval = True
+                user_profile.user.is_active = True
+                user_profile.user.save()
+                user_profile.save()
                 return render(request, "adminapp/thank_you.html", {
                 "user": user_data
                 })
@@ -181,6 +187,10 @@ def user_licenses(request):
         email_to_muka.send()
         email_to_user.send()
 
+        user_profile.ready_for_approval = True
+        user_profile.save()
+        user_profile.user.is_active = True
+        user_profile.user.save()
         user_data = UserFormSerializer(user_profile).data
         return render(request, "adminapp/thank_you.html", {
             "user": user_data
