@@ -66,6 +66,10 @@ REST_FRAMEWORK = {
     "SEARCH_PARAM": "filter"
 }
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.AllowAllUsersModelBackend"
+]
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
