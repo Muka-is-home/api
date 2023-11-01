@@ -70,7 +70,7 @@ def edit_profile(request, pk):
 def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
-    if request.user.is_superuser or user.user == request.user:
+    if request.user.is_superuser or request.user == user.user:
         return render(request, "adminapp/user_detail.html", {
             "user": user_data
         })
