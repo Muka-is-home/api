@@ -6,7 +6,7 @@ from adminportal.serializers.serializers import UserListSerializer
 def user_is_superuser(user):
     return user.is_superuser
 
-@user_passes_test(user_is_superuser)
+@user_passes_test(user_is_superuser, login_url="access_denied")
 def user_list(request):
     users = User.objects.exclude(user__is_superuser=True)
     user_data = UserListSerializer(users, many=True).data
