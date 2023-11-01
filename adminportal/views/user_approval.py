@@ -35,7 +35,7 @@ def update_approval(request):
                 )
                 email.send()
             elif status == 'ready':
-                user.active = False
+                user.active = None
                 user.ready_for_approval = True
                 user.save()
 

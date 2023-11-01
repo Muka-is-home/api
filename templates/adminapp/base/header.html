@@ -3,25 +3,19 @@
   <h3>Muka</h3>
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">
-        <button class="btn btn-primary" id="logout">Logout</button>
+      <a class="nav-link" href={% if request.user.is_authenticated %}"{% url 'logout' %}"{% else %}"{% url 'user_login' %}"{% endif %}>
+        <button class="btn btn-primary" id="logout">{% if request.user.is_authenticated %}Logout{% else %}Login{% endif %}</button>
       </a>
     </li>
   </ul>
 </div>
-{% if user.is_authenticated %}
-  <script>
-    document.getElementById("logout").addEventListener("click", function(e) {
-        if (!confirm("Are you sure you want to logout?")) {
-            e.preventDefault();
-        }
-    });
-  </script>
-{% else %}
-  <script>
-    document.getElementById("logout").addEventListener("click", function() {
-        alert("You Are Not Logged In!")
-    })
-  </script>
+{% if request.user.is_authenticated %}
+<script>
+  document.getElementById("logout").addEventListener("click", function(e) {
+      if (!confirm("Are you sure you want to logout?")) {
+          e.preventDefault();
+      }
+  });
+</script>
 {% endif %}
 {% endblock %}

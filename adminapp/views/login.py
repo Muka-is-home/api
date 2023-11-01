@@ -12,7 +12,9 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         try:
           user = User.objects.get(user=self.request.user)
-          if user.active:
+          if user.user.is_superuser:
+            return reverse_lazy('user_list')
+          elif user.active:
             return reverse_lazy('user_detail', args=[user.id])
           elif user.active is None:
             return reverse_lazy('thank_you')

@@ -51,7 +51,6 @@ def edit_profile(request, pk):
             "user": user_data
         })
 
-    # render edit form
     user_types = UserType.objects.exclude(name="Admin")
     user_type_data = UserTypeSerializer(user_types, many=True).data
 
