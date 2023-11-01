@@ -3,7 +3,6 @@ from api.models import User
 
 class UserListSerializer(serializers.ModelSerializer):
     """serializer for user list information"""
-    email = serializers.EmailField(source='user.email')
 
     class Meta:
         model = User
