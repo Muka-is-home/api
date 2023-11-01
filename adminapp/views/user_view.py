@@ -137,9 +137,25 @@ def create_profile(request, type):
                 user_profile.user.is_active = True
                 user_profile.user.save()
                 user_profile.save()
+                env = get_env(__file__)
+                email_to_muka = EmailMessage(
+                            f'new Muka applicant - {user_profile.name}',
+                            f'{user_profile.name} has applied for a spot on Muka!',
+                            f'{env("EMAIL_HOST_USER")}',
+                            [env("EMAIL_HOST_USER")]
+                        )
+                email_to_muka.send()
+                email_to_user = EmailMessage(
+                            f'Thanks for your application {user_profile.name}!',
+                            f'{user_profile.name}, We will review your profile and submit or reject you.',
+                            f'{env("EMAIL_HOST_USER")}',
+                            [user_profile.email]
+                        )
+                email_to_muka.send()
+                email_to_user.send()
                 return render(request, "adminapp/thank_you.html", {
-                "user": user_data
-                })
+                    "user": user_data
+                    })
 
     specializations = Specialization.objects.all()
     specialization_data = SpecializationSerializer(specializations, many=True).data
