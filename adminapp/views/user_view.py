@@ -5,7 +5,7 @@ from utils import get_env
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import UserTypeSerializer, SpecializationSerializer, StateSerializer, CountySerializer
-
+    
 def edit_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
@@ -70,9 +70,12 @@ def edit_profile(request, pk):
 def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
-    return render(request, "adminapp/user_detail.html", {
-        "user": user_data
-    })
+    if request.user.is_superuser or user.user == request.user:
+        return render(request, "adminapp/user_detail.html", {
+            "user": user_data
+        })
+    else:
+        return render(request, "adminportal/access_denied.html")
 
 def create_profile(request, type):
     if request.method == "POST":

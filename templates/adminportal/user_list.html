@@ -25,7 +25,7 @@
                 <div class="radio-group">
                   <tr id="{{ user.active }}">
                     <td><a href="mailto:{{ user.user.email }}">{{ user.user.email }}</a></td>
-                    <td><a href="{% url 'user_list' %}">{{ user.name }}</a></td>
+                    <td><a href="{% url 'user_detail' user.id %}">{{ user.name }}</a></td>
                     <td>
                       <input type="radio" id="{{user.active}}" name="{{ user.id }}" value="approved--{{ user.id }}" {% if user.active %}checked{% endif %} disabled>
                     </td>
