@@ -1,14 +1,20 @@
 {% block header %}
-<div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-bottom">
-  <h3>Muka</h3>
-  <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link" href={% if request.user.is_authenticated %}"{% url 'logout' %}"{% else %}"{% url 'user_login' %}"{% endif %}>
-        <button class="btn btn-primary" id="logout">{% if request.user.is_authenticated %}Logout{% else %}Login{% endif %}</button>
-      </a>
-    </li>
-  </ul>
-</div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Muka Admin</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        </ul>
+      
+        <a class="nav-link" href={% if request.user.is_authenticated %}"{% url 'logout' %}"{% else %}"{% url 'user_login' %}"{% endif %}>
+          <button class="btn btn-primary" id="logout">{% if request.user.is_authenticated %}Logout{% else %}Login{% endif %}</button>
+        </a>
+      </div>
+    </div>
+  </nav>
 {% if request.user.is_authenticated %}
 <script>
   document.getElementById("logout").addEventListener("click", function(e) {
