@@ -7,4 +7,4 @@ class UserFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'name', 'website', 'bio', 'company', 'company_address', 'company_phone', 'contact_no', 'facebook', 'instagram', 'tiktok', 'image', 'licenses', 'user_type', 'specializations', 'counties', 'email')
-        depth = 1
+        depth = 2
