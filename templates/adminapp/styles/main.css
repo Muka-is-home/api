@@ -13,8 +13,6 @@ body {
 .main-body {
     padding: 15px;
 }
-
-
 .card {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
 }
@@ -58,9 +56,14 @@ body {
 /** 2. FORM STYLES *********************/
 .helptext {
     font-weight: bold;
-    font-style: italic;
+    color: #5e5e5e;
 }
 
 .errorlist li {
     color: red;
+}
+
+label {
+    font-size: 1.2em;
+    font-weight: bold;
 }
