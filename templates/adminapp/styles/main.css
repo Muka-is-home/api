@@ -63,7 +63,7 @@ body {
     color: red;
 }
 
-label {
+.form-label {
     font-size: 1.2em;
     font-weight: bold;
 }
