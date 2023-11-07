@@ -3,7 +3,7 @@
 {% block content %}
 <div class="userEditForm">
   <h5>* indicates required field</h5>
-  <form action="{% url 'edit_profile' user.id %}" method="POST" id="user_form">
+  <form action="{% url 'edit_profile' user.id type %}" method="POST" id="user_form">
     {% csrf_token %}
     <div class="mb-3">
       <label for="name" class="form-label">Full Name*</label>
@@ -48,15 +48,6 @@
     <div class="mb-3">
       <label for="image" class="form-label">Image URL*</label>
       <input type="url" class="form-control" id="profile-image" name="image" value="{{ user.image }}" aria-describedby="imagekHelp" required>
-    </div>
-    <div class="mb-3">
-      <label for="userType" class="form-label">User Type*</label>
-      <select class="form-select" aria-label="userTypeSelect" name="user_type" required>
-        <option selected>Choose Your Role</option>
-        {% for user_type in user_types %}
-          <option value="{{ user_type.id }}" {% if user.user_type.id == user_type.id %}selected{% endif %}>{{ user_type.name }}</option>
-        {% endfor %}
-      </select>
     </div>
     <div class="mb-3">
       <label for="specializations" class="form-label">Specializations</label>

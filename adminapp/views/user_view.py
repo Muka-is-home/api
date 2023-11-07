@@ -4,14 +4,14 @@ from django.core.mail import EmailMessage
 from utils import get_env
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
-from api.serializers import UserTypeSerializer, SpecializationSerializer, StateSerializer, CountySerializer
+from api.serializers import SpecializationSerializer, StateSerializer, CountySerializer
     
-def edit_profile(request, pk):
+def edit_profile(request, pk, type):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
     if request.method == "POST":
         # process edit form
-        user_type = UserType.objects.get(pk=request.POST.get("user_type"))
+        user_type = UserType.objects.get(name=type)
 
         user.name=request.POST.get("name")
         user.website=request.POST.get("website")
@@ -51,18 +51,14 @@ def edit_profile(request, pk):
             "user": user_data
         })
 
-    user_types = UserType.objects.exclude(name="Admin")
-    user_type_data = UserTypeSerializer(user_types, many=True).data
-
     specializations = Specialization.objects.all()
     specialization_data = SpecializationSerializer(specializations, many=True).data
     
     user_specialization_ids = user.specializations.values_list('specialization', flat=True)
 
-    print(user_data["licenses"])
-    return render(request, "adminapp/user_profile/edit_profile.html", {
+    return render(request, "adminapp/user_profile_forms/edit_profile_form.html", {
     "user": user_data,
-    "user_types": user_type_data,
+    "type": type,
     "specializations": specialization_data,
     "user_specializations": user_specialization_ids,
     })

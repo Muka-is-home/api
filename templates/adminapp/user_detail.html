@@ -114,9 +114,9 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-{% comment %}                       {% if not request.user.is_superuser %}
-                      <a href="{% url 'edit_profile' user.id %}" class="btn btn-info">Edit Profile</a>
-                      {% endif %} {% endcomment %}
+                      {% if not request.user.is_superuser %}
+                      <a href="{% url 'edit_profile' user.id user.user_type.name %}" class="btn btn-info">Edit Profile</a>
+                      {% endif %}
                     </div>
                   </div>
                 </div>

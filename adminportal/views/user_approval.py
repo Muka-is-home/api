@@ -6,7 +6,6 @@ from adminportal.serializers.serializers import UserListSerializer
 
 def update_approval(request):
     if request.method == "POST":
-        print(request.POST)
         users_to_approve = [value for key, value in request.POST.items() if key != 'csrfmiddlewaretoken']
         env = get_env(__file__)
         for user in users_to_approve:
