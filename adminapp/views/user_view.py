@@ -11,45 +11,52 @@ def edit_profile(request, pk, type):
     user_data = UserFormSerializer(user).data
     if request.method == "POST":
         # process edit form
-        user_type = UserType.objects.get(name=type)
-
-        user.name=request.POST.get("name")
-        user.website=request.POST.get("website")
-        user.bio=request.POST.get("bio")
-        user.company=request.POST.get("company")
-        user.company_address=request.POST.get("company_address")
-        user.company_phone=request.POST.get("company_phone")
-        user.contact_no=request.POST.get("contact_no")
-        user.facebook=request.POST.get("facebook")
-        user.user_type=user_type
+        email_user = User.objects.filter(email=request.POST.get("email")).first()
+        if email_user and email_user != user:
+            return render(request, "adminapp/email_taken.html", {
+                "type": type,
+                "edit": True,
+                "pk": pk
+            })
         
-        facebook = request.POST.get("facebook")
-        instagram = request.POST.get("instagram")
-        tiktok = request.POST.get("tiktok")
-
-        if facebook:
-            user.facebook = facebook
-        if instagram:
-            user.instagram = instagram
-        if tiktok:
-            user.tiktok = tiktok
+        else:
+            user.name=request.POST.get("name")
+            user.website=request.POST.get("website")
+            user.email=request.POST.get("email")
+            user.bio=request.POST.get("bio")
+            user.company=request.POST.get("company")
+            user.company_address=request.POST.get("company_address")
+            user.company_phone=request.POST.get("company_phone")
+            user.contact_no=request.POST.get("contact_no")
+            user.facebook=request.POST.get("facebook")
             
-        user.save()
+            facebook = request.POST.get("facebook")
+            instagram = request.POST.get("instagram")
+            tiktok = request.POST.get("tiktok")
 
-        for specialization in UserSpecialization.objects.filter(user=user):
-            specialization.delete()
+            if facebook:
+                user.facebook = facebook
+            if instagram:
+                user.instagram = instagram
+            if tiktok:
+                user.tiktok = tiktok
+                
+            user.save()
 
-        for specialization in request.POST.getlist("specializations"):
-            spec = Specialization.objects.get(pk=specialization)
-            UserSpecialization.objects.create(
-            user=user,
-            specialization=spec
-            )
+            for specialization in UserSpecialization.objects.filter(user=user):
+                specialization.delete()
 
-        user_data = UserFormSerializer(user).data
-        return render(request, "adminapp/user_detail.html", {
-            "user": user_data
-        })
+            for specialization in request.POST.getlist("specializations"):
+                spec = Specialization.objects.get(pk=specialization)
+                UserSpecialization.objects.create(
+                user=user,
+                specialization=spec
+                )
+
+            user_data = UserFormSerializer(user).data
+            return render(request, "adminapp/user_detail.html", {
+                "user": user_data
+            })
 
     specializations = Specialization.objects.all()
     specialization_data = SpecializationSerializer(specializations, many=True).data

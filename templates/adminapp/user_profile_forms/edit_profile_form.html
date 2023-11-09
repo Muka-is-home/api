@@ -8,10 +8,17 @@
     <div class="mb-3">
       <label for="name" class="form-label">Full Name*</label>
       <input type="text" class="form-control" id="profile-name" name="name"  value="{{ user.name }}" aria-describedby="nameHelp" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
     </div>
     <div class="mb-3">
       <label for="website" class="form-label">website*</label>
       <input type="url" class="form-control" id="profile-website" name="website" value="{{ user.website }}" aria-describedby="bioHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">email*</label>
+      <input type="email" class="form-control" id="profile-email" name="email" value="{{ user.email }}" aria-describedby="emailHelp" required>
     </div>
     <div class="mb-3">
       <label for="bio" class="form-label">bio*</label>

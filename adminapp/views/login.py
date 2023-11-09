@@ -25,6 +25,5 @@ class UserLoginView(LoginView):
           return reverse_lazy('profile_signup')
 
     def form_invalid(self, form):
-        print(self.request)
         messages.error(self.request,'Invalid username or password!')
         return self.render_to_response(self.get_context_data(form=form))
