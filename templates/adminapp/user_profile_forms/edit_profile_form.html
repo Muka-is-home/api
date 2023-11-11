@@ -42,15 +42,15 @@
     </div>
     <div class="mb-3">
       <label for="facebook" class="form-label">Facebook Link</label>
-      <input type="url" class="form-control" id="profile-facebook" name="facebook" value="{{ user.facebook }}" aria-describedby="facebookHelp">
+      <input type="url" class="form-control" id="profile-facebook" name="facebook" value="{{ user.facebook|default_if_none:"" }}" aria-describedby="facebookHelp">
     </div>
     <div class="mb-3">
       <label for="instagram" class="form-label">Instagram Link</label>
-      <input type="url" class="form-control" id="profile-instagram" name="instagram" value="{{ user.instagram }}" aria-describedby="instagramHelp">
+      <input type="url" class="form-control" id="profile-instagram" name="instagram" value="{{ user.instagram|default_if_none:"" }}" aria-describedby="instagramHelp">
     </div>
     <div class="mb-3">
       <label for="tiktok" class="form-label">TikTok Link</label>
-      <input type="url" class="form-control" id="profile-tiktok" name="tiktok" value="{{ user.tiktok }}" aria-describedby="tiktokkHelp">
+      <input type="url" class="form-control" id="profile-tiktok" name="tiktok" value="{{ user.tiktok|default_if_none:"" }}" aria-describedby="tiktokkHelp">
     </div>
     <div class="mb-3">
       <label for="image" class="form-label">Image URL*</label>
