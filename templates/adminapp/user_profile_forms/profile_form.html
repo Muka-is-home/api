@@ -1,7 +1,7 @@
 {% extends "adminapp/base/index.html" %}
 
 {% block content %}
-<div class="userCreateForm">
+<div class="container userCreateForm">
   <h5>* indicates required field</h5>
   <form action="{% url 'profile' user%}" method="POST" id="user_form" onSubmit="prepareLicenseData">
     {% csrf_token %}
@@ -10,15 +10,15 @@
       <input type="text" class="form-control" id="profile-name" name="name" aria-describedby="nameHelp" required>
     </div>
     <div class="mb-3">
-      <label for="website" class="form-label">website*</label>
+      <label for="website" class="form-label">Website*</label>
       <input type="url" class="form-control" id="profile-website" name="website" aria-describedby="bioHelp" required>
     </div>
     <div class="mb-3">
-      <label for="email" class="form-label">email*</label>
+      <label for="email" class="form-label">Email*</label>
       <input type="email" class="form-control" id="profile-email" name="email" aria-describedby="emailHelp" required>
     </div>
     <div class="mb-3">
-      <label for="bio" class="form-label">bio*</label>
+      <label for="bio" class="form-label">Bio*</label>
       <textarea class="form-control" id="profile-bio" name="bio" aria-describedby="websiteHelp" rows="6" required></textarea>
     </div>
     <div class="mb-3">
@@ -56,7 +56,12 @@
     <div class="mb-3">
       <label for="specializations" class="form-label">Specializations</label>
       {% for specialization in specializations %}
-          <input type="checkbox" name="specializations" value="{{ specialization.id }}">{{ specialization.tag_name }}</input>
+              <div class="form-check">
+            <input class="form-check-input" name="specializations" type="checkbox" id="{{ specialization.id }}" value="{{ specialization.id }}">
+            <label class="form-check-label" for="{{ specialization.id }}">
+              {{ specialization.tag_name }}
+            </label>
+          </div>
       {% endfor %}
     </div>
     <button type="Submit" class="btn btn-primary">Submit</button>
