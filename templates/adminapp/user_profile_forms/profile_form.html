@@ -1,0 +1,70 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+<div class="container userCreateForm">
+  <h5>* indicates required field</h5>
+  <form action="{% url 'profile' user%}" method="POST" id="user_form" onSubmit="prepareLicenseData">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name*</label>
+      <input type="text" class="form-control" id="profile-name" name="name" aria-describedby="nameHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="website" class="form-label">Website*</label>
+      <input type="url" class="form-control" id="profile-website" name="website" aria-describedby="bioHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email*</label>
+      <input type="email" class="form-control" id="profile-email" name="email" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="bio" class="form-label">Bio*</label>
+      <textarea class="form-control" id="profile-bio" name="bio" aria-describedby="websiteHelp" rows="6" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="company" class="form-label">Company*</label>
+      <input type="text" class="form-control" id="profile-company" name="company" aria-describedby="companyHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyAddress" class="form-label">Company address*</label>
+      <input type="address" class="form-control" id="profile-address" name="company_address" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="companyPhone" class="form-label">Company Phone Number*</label>
+      <input type="tel" class="form-control" id="profile-company-phone" name="company_phone" aria-describedby="companyPhoneHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="contactNumber" class="form-label">Contact Number*</label>
+      <input type="tel" class="form-control" id="profile-contact-no" name="contact_no" aria-describedby="contactNumberHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="facebook" class="form-label">Facebook Link</label>
+      <input type="url" class="form-control" id="profile-facebook" name="facebook" aria-describedby="facebookHelp">
+    </div>
+    <div class="mb-3">
+      <label for="instagram" class="form-label">Instagram Link</label>
+      <input type="url" class="form-control" id="profile-instagram" name="instagram" aria-describedby="instagramHelp">
+    </div>
+    <div class="mb-3">
+      <label for="tiktok" class="form-label">TikTok Link</label>
+      <input type="url" class="form-control" id="profile-tiktok" name="tiktok" aria-describedby="tiktokkHelp">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL*</label>
+      <input type="url" class="form-control" id="profile-image" name="image" aria-describedby="imagekHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="specializations" class="form-label">Specializations</label>
+      {% for specialization in specializations %}
+              <div class="form-check">
+            <input class="form-check-input" name="specializations" type="checkbox" id="{{ specialization.id }}" value="{{ specialization.id }}">
+            <label class="form-check-label" for="{{ specialization.id }}">
+              {{ specialization.tag_name }}
+            </label>
+          </div>
+      {% endfor %}
+    </div>
+    <button type="Submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}
