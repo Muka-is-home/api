@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='state',
             name='abbreviation',
-            field=models.CharField(default='justin.ferwerda@gmail.com', max_length=2),
+            field=models.CharField(default='', max_length=2),
             preserve_default=False,
         ),
         migrations.AddField(
