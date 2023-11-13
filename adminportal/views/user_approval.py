@@ -19,7 +19,7 @@ def update_approval(request):
                     'Welcome to Muka!',
                     'message body',
                     f'{env("EMAIL_HOST_USER")}',
-                    [user.user.email]
+                    [user.email]
                 )
                 email.send()
             elif status == 'rejected':
