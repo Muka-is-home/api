@@ -14,5 +14,5 @@ class SpecializationView(generics.ListAPIView):
     def get_queryset(self):
         home_page = self.request.query_params.get('homePage')
         if home_page:
-            return Specialization.objects.filter(on_homepage=True)
+            return Specialization.objects.filter(on_homepage=True, userspecialization__user__user_type__name='Vendor').distinct()
         return super().get_queryset()
