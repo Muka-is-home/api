@@ -7,7 +7,11 @@
       <button type="button" class="btn btn-primary" id="filterApproved" data-filter="True">Approved Users</button>
       <button type="button" class="btn btn-primary" id="filterNotApproved" data-filter="False">Rejected Users</button>
     </div>
-
+    <div class="blog-post-button">
+      <a href="{% url 'create_blog' %}">
+        <button class="btn btn-outline-secondary">Create Blog Post</button>
+      </a>
+    </div>
     <form method="post" action="{% url 'update_approval' %}" onsubmit="return alertAdmin();">
         {% csrf_token %}
         <table class="table table-striped table-bordered">
