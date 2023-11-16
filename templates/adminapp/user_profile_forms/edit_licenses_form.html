@@ -1,14 +1,14 @@
 {% extends "adminapp/base/index.html" %}
 
 {% block content %}
-<form action="{% url 'edit_user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();">
+<form action="{% url 'edit_licenses' user.id %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();">
   {% csrf_token %}
   <div class="accordion" id="accordionExample">
     {% for state in states %}
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ state.id }}" aria-expanded="true" aria-controls="collapseOne">
-          {{ state.name }} <label for="userLicense" class="form-label">Enter your License #</label><input type="text" class="form-control" name="licenses" id="{{ state.id }}" {% for license in licenses %}{% if license.state == state.id %}value="{{license.license_no}}"{% endif %}{% endfor %} aria-describedby="licenseHelp">
+          {{ state.name }} <label for="userLicense" class="form-label">Enter your License #</label><input type="text" class="form-control" name="licenses" id="{{ state.id }}" {% for license in licenses %}{% if license.state.id == state.id %}value="{{license.license_no}}"{% endif %}{% endfor %} aria-describedby="licenseHelp">
         </button>
       </h2>
       <div id="{{ state.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -20,11 +20,11 @@
           {% endfor %}
         </div>
       </div>
-      <input type="hidden" name="userLicenses">
     </div>
     {% endfor %}
+    <input type="hidden" name="userLicenses">
   </div>
-  <button type="Submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <script>
   function prepareLicenseData() {
@@ -41,7 +41,6 @@
 
     const hiddenInput = document.querySelector('input[name="userLicenses"]');
     hiddenInput.value = userLicenses.join(', ');
-    
     return true;
 
   }

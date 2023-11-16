@@ -73,7 +73,6 @@ def edit_profile(request, pk, type):
 def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
-    print(user_data)
     if request.user.is_superuser or request.user == user.user:
         return render(request, "adminapp/user_detail.html", {
             "user": user_data
@@ -217,3 +216,52 @@ def user_licenses(request):
         return render(request, "adminapp/thank_you.html", {
             "user": user_data
         })
+
+def edit_licenses(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    if request.method == "POST":
+        
+        for county in UserCounty.objects.filter(user=user):
+            county.delete()
+        
+        for user_license in UserLicense.objects.filter(user=user):
+            user_license.delete()
+            
+        for county in request.POST.getlist("counties"):
+            cty = County.objects.get(pk=county)
+            UserCounty.objects.create(
+                user=user,
+                county=cty
+            )
+            
+        user_licenses = request.POST.get("userLicenses").split(",")
+        for user_license in user_licenses:
+            state_id, license_no = user_license.split("-")
+            state = State.objects.get(pk=int(state_id))
+            UserLicense.objects.create(
+                state=state,
+                user=user,
+                license_no=license_no
+            )
+        user_data = UserFormSerializer(user).data
+        return render(request, "adminapp/user_detail.html", {
+            "user": user_data
+        })
+    
+    states = State.objects.all()
+    state_data = StateSerializer(states, many=True).data
+
+    counties = County.objects.all()
+    county_data = CountySerializer(counties, many=True).data
+    
+    user_county_ids = user.counties.values_list('county', flat=True)
+    
+    user_data = UserFormSerializer(user).data
+    return render(request, "adminapp/user_profile_forms/edit_licenses_form.html", {
+        "user": user_data,
+        "states": state_data,
+        "counties": county_data,
+        "user_counties": user_county_ids,
+        "licenses": user_data["licenses"]
+    })
+    

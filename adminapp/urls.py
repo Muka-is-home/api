@@ -1,7 +1,7 @@
 # https://www.django-rest-framework.org/api-guide/routers/
 from django.urls import path
 from django.views.generic import TemplateView
-from adminapp.views import UserLoginView, user_detail, profile_signup, edit_profile, create_profile, signup, user_licenses, user_logout
+from adminapp.views import UserLoginView, user_detail, profile_signup, edit_profile, create_profile, signup, user_licenses, user_logout, edit_licenses
 app_name = "adminapp"
 
 urlpatterns = [
@@ -16,5 +16,6 @@ urlpatterns = [
   path(f"{app_name}/thank_you", TemplateView.as_view(
     template_name = "adminapp/thank_you.html"
   ), name="thank_you"),
-  path(f"{app_name}/rejected", TemplateView.as_view(template_name="adminapp/rejection.html"), name="rejection")
+  path(f"{app_name}/rejected", TemplateView.as_view(template_name="adminapp/rejection.html"), name="rejection"),
+  path(f"{app_name}/edit_licenses/<int:pk>", edit_licenses, name="edit_licenses")
 ]
