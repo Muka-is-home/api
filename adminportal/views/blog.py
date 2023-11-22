@@ -73,12 +73,11 @@ def edit_blog(request, pk):
                 tag = tag,
                 content = blog
             )            
-            
-        users = User.objects.exclude(user__is_superuser=True)
-        user_data = UserListSerializer(users, many=True).data
-            
-        return render(request, "adminportal/user_list.html", {
-        "users": user_data
+        
+        blog_posts = Content.objects.all()
+        blog_data = ContentSerializer(blog_posts, many=True).data           
+        return render(request, "adminportal/blog_list.html", {
+        "blogs": blog_data
         })
 
     content_types = ContentType.objects.all()
