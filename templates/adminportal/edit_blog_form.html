@@ -2,46 +2,46 @@
 
 {% block content %}
   <div class="container mt-5">
-    <h2>Add a New Blog Post</h2>
-    <form method="post" action="{% url 'create_blog' %}" class="mt-4">
+    <h2>Edit Blog Post</h2>
+    <form method="post" action="{% url 'edit_blog' blog.id %}" class="mt-4">
       {% csrf_token %}
       
       <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
-        <input type="text" name="title" id="title" class="form-control" required>
+        <input type="text" name="title" id="title" class="form-control" value={{ blog.title }} required>
       </div>
       
       <div class="mb-3">
         <label for="content" class="form-label">Content:</label>
-        <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
+        <textarea name="content" id="content" class="form-control" rows="5" required>{{ blog.body }}</textarea>
       </div>
 
       <div class="mb-3">
         <label for="content_type" class="form-label">Content Type:</label>
         <select name="content_type" id="content_type" class="form-select" required>
-          <option value="" disabled selected>Select Content Type</option>
+          <option value="" disabled {% if not form.content_type.value %}selected{% endif %}>Select Content Type</option>
           {% for content_type in content_types %}
-            <option value="{{ content_type.id }}">{{ content_type.name }}</option>
+            <option value="{{ content_type.id }}" {% if content_type.id == blog.content_type.id %}selected{% endif %}>{{ content_type.name }}</option>
           {% endfor %}
         </select>
       </div>
 
       <div class="mb-3">
         <label for="date" class="form-label">Date:</label>
-        <input type="text" name="date" id="date" class="form-control" pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format yyyy-mm-dd" required>
+        <input type="text" name="date" id="date" class="form-control" pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format yyyy-mm-dd" value={{ blog.date }} required>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Tags:</label>
         {% for tag in tags %}
           <div class="form-check">
-            <input type="checkbox" name="tags" value="{{ tag.id }}" id="tag--{{ tag.id }}" class="form-check-input">
+            <input type="checkbox" name="tags" value="{{ tag.id }}" id="tag--{{ tag.id }}" class="form-check-input" {% if tag.id in blog_tags %}checked{% endif %}>
             <label for="tag--{{ tag.id }}" class="form-check-label">{{ tag.name }}</label>
           </div>
         {% endfor %}
       </div>
       
-      <button type="submit" class="btn btn-primary">Create Post</button>
+      <button type="submit" class="btn btn-primary">Edit Post</button>
     </form>
   </div>
 {% endblock %}
