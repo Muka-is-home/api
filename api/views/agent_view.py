@@ -21,7 +21,7 @@ class AgentView(ViewSet):
 
     def list(self, request):
         """returns list of agents"""
-        agents = User.objects.filter(user_type__name='Realtor')
+        agents = User.objects.filter(user_type__name='Realtor', active=True)
         specialty = request.query_params.get('specialty')
         if specialty is not None:
             agents = agents.filter(user_specialization__specialization__tag_name=specialty)
