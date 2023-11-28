@@ -20,7 +20,7 @@ class SearchView(ViewSet):
             counties = UserCounty.objects.filter(user__user_type__name=user_type, county__state__name=state)
             response = set([county.county.name for county in counties])
         else:
-            user_list = users.filter(user_county__county__name=county, user_county__county__state__name=state)
+            user_list = users.filter(user_county__county__name=county, user_county__county__state__name=state, active=True)
             serializer = UserSerializer(user_list, many=True)
             response = serializer.data
 
