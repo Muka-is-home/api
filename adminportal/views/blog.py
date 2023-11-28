@@ -113,3 +113,13 @@ def blog_list(request):
     return render(request, "adminportal/blog_list.html", {
         "blogs": blogs
     })
+
+def delete_blog(request, pk):
+    
+    blog = Content.objects.get(pk=pk)
+    blog.delete()
+    
+    return blog_list(request)
+    
+
+    
