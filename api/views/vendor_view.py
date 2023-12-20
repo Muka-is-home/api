@@ -21,7 +21,7 @@ class VendorView(ViewSet):
 
     def list(self, request):
         """returns list of Vendors"""
-        vendors = User.objects.filter(user_type__name='Vendor')
+        vendors = User.objects.filter(user_type__name='Vendor', active=True)
         specialty = request.query_params.get('specialty')
         if specialty is not None:
             vendors = vendors.filter(user_specialization__specialization__tag_name=specialty)
