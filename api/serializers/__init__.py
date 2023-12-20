@@ -1,1 +1,1 @@
-from .serializers import UserSerializer, ContentSerializer, SpecializationSerializer, ContentTypeSerializer, UserTypeSerializer, CountySerializer, StateSerializer
+from .serializers import UserSerializer, ContentSerializer, SpecializationSerializer, ContentTypeSerializer, UserTypeSerializer, CountySerializer, StateSerializer, TagSerializer
