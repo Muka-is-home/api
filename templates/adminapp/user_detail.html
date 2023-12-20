@@ -99,6 +99,9 @@
                       {% for license in user.licenses %}
                       <strong>{{ license.state.abbreviation }}</strong>: <u>{{ license.license_no }}</u>
                       {% endfor %}
+                      {% if not request.user.is_superuser %}
+                      <a href="{% url 'edit_licenses' user.id %}" class="btn btn-info">Edit Licenses</a>
+                      {% endif %}
                     </div>
                   </div>
                   {% endif %}

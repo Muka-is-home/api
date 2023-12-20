@@ -1,11 +1,15 @@
 {% block header %} 
   <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Muka Admin</a>
-      <div id="navbarScroll">
+      <a class="navbar-brand" href={% if request.user.is_superuser %}"{% url 'user_list' %}"{% endif %}>Muka Admin</a>
+      <div id="navbarScroll" class="nav-buttons">
         <div>
+          {% if request.user.is_superuser %}
+          <a class="nav-link blog-button" href="{% url 'blogs' %}">
+            <button class="btn btn-outline-info">Blog</button>
+          </a>
+          {% endif %}
         </div>
-      
         <a class="nav-link" href={% if request.user.is_authenticated %}"{% url 'logout' %}"{% else %}"{% url 'user_login' %}"{% endif %}>
           <button class="btn btn-outline-info" id="logout">{% if request.user.is_authenticated %}Logout{% else %}Login{% endif %}</button>
         </a>
