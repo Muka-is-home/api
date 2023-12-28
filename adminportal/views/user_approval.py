@@ -12,27 +12,29 @@ def update_approval(request):
             status, user_id = user.split('--')
             user = User.objects.get(pk=user_id)
             if status == 'approved':
-                user.active = True
-                user.ready_for_approval = False
-                user.save()
-                email = EmailMessage(
-                    'Welcome to Muka!',
-                    'message body',
-                    f'{env("EMAIL_HOST_USER")}',
-                    [user.email]
-                )
-                email.send()
+                if not user.active:
+                    user.active = True
+                    user.ready_for_approval = False
+                    user.save()
+                    email = EmailMessage(
+                        'Welcome to Muka!',
+                        'message body',
+                        f'{env("EMAIL_HOST_USER")}',
+                        [user.email]
+                    )
+                    email.send()
             elif status == 'rejected':
-                user.active = False
-                user.ready_for_approval = False
-                user.save()
-                email = EmailMessage(
-                    'Concerning your profile at Muka',
-                    'message body',
-                    f'{env("EMAIL_HOST_USER")}',
-                    [user.email]
-                )
-                email.send()
+                if user.active is None or user.active == True:
+                    user.active = False
+                    user.ready_for_approval = False
+                    user.save()
+                    email = EmailMessage(
+                        'Concerning your profile at Muka',
+                        'message body',
+                        f'{env("EMAIL_HOST_USER")}',
+                        [user.email]
+                    )
+                    email.send()
             elif status == 'ready':
                 user.active = None
                 user.ready_for_approval = True
