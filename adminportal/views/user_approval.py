@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import user_passes_test
 from utils import get_env
 from api.models import User
 from adminportal.serializers.serializers import UserListSerializer
+from adminportal.views import user_is_superuser
 
+@user_passes_test(user_is_superuser, login_url="user_login")
 def update_approval(request):
     if request.method == "POST":
         users_to_approve = [value for key, value in request.POST.items() if key != 'csrfmiddlewaretoken']
