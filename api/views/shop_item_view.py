@@ -20,4 +20,4 @@ class ShopItemView(ViewSet):
 class ShopItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopItem
-        fields = ('id', 'name', 'description', 'purchase_url')
+        fields = ('id', 'name', 'description', 'price', 'link', 'image')
