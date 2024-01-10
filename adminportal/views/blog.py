@@ -6,6 +6,7 @@ from api.serializers import ContentSerializer, ContentTypeSerializer, TagSeriali
 from adminportal.views import user_is_superuser
 from adminportal.serializers.serializers import UserListSerializer
 
+@user_passes_test(user_is_superuser, login_url="user_login")
 def create_blog(request):
     if request.method == "POST":
         
@@ -49,6 +50,7 @@ def create_blog(request):
       "tags": tag_data
     })
 
+@user_passes_test(user_is_superuser, login_url="user_login")
 def edit_blog(request, pk):
     
     blog = Content.objects.get(pk=pk)
@@ -97,7 +99,7 @@ def edit_blog(request, pk):
       "blog_tags": blog_tags
     })
 
-@user_passes_test(user_is_superuser, login_url="access_denied")
+@user_passes_test(user_is_superuser, login_url="user_login")
 def blog_list(request):
     blog_list = Content.objects.all().order_by('-date')
 
@@ -114,6 +116,7 @@ def blog_list(request):
         "blogs": blogs
     })
 
+@user_passes_test(user_is_superuser, login_url="user_login")
 def delete_blog(request, pk):
     
     blog = Content.objects.get(pk=pk)
