@@ -23,5 +23,6 @@ def user_list(request):
         users = paginator.page(paginator.num_pages)
     
     return render(request, "adminportal/user_list.html", {
-        "users": users
+        "users": users,
+        "submit_alert": False
     })
