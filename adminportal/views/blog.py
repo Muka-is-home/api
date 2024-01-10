@@ -89,7 +89,7 @@ def edit_blog(request, pk):
     
     blog_data = ContentSerializer(blog).data
     blog_tags = blog.tags.values_list('tag_id', flat=True)
-    
+
     return render(request, "adminportal/edit_blog_form.html", {
       "content_types": content_type_data,
       "tags": tag_data,

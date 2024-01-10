@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container userCreateForm">
   <h5>* indicates required field</h5>
-  <form action="{% url 'profile' user%}" method="POST" id="user_form" onSubmit="prepareLicenseData">
+  <form action="{% url 'profile' user%}" method="POST" id="user_form" class="mt-4" onsubmit="prepareLicenseData">
     {% csrf_token %}
     <div class="mb-3">
       <label for="name" class="form-label">Full Name*</label>
