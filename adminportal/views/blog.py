@@ -114,6 +114,7 @@ def blog_list(request):
         "blogs": blogs
     })
 
+
 def delete_blog(request, pk):
     
     blog = Content.objects.get(pk=pk)

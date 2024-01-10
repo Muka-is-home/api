@@ -1,0 +1,50 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2>{% if item.id %}Edit Shop Item{% else %}Add Shop Item{% endif %}</h2>
+    <form method="post" enctype="multipart/form-data" action="{% if item.id %}{% url 'edit_shop_item' item.id %}{% else %}{% url 'create_shop_item' %}{% endif %}" class="mt-4">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" name="name" id="name" class="form-control" value="{{ item.name|default:"" }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price:</label>
+        <input type="number" step=".01" name="price" id="price" class="form-control" value="{{ item.price|default:"" }}" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea name="description" id="description" class="form-control" rows="5" required>{{ item.description|default:"" }}</textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="link" class="form-label">Link:</label>
+        <input type="url" name="link" id="link" class="form-control" value="{{ item.link|default:"" }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" name="image" type="file" id="formFile" required>
+      </div>
+
+      
+      <button type="submit" class="btn btn-outline-success">Submit Item</button>
+      {% if item.id %}
+      <a href="{% url 'delete_shop_item' item.id %}">
+      <button id="delete" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete Item</button>
+      </a>
+      {% endif %}
+    </form>
+  </div>
+  <script>
+    document.getElementById("delete").addEventListener("click", function(e) {
+        if (!confirm("Are you sure you want to delete this item? This action cannot be undone!")) {
+            e.preventDefault();
+        }
+    });
+  </script>
+{% endblock %}
