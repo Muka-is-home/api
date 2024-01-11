@@ -15,7 +15,8 @@ def create_blog(request):
         content = request.POST.get("content")
         date = request.POST.get("date")            
         tag_ids = request.POST.getlist("tags")
-        author = User.objects.get(user=request.user)                            
+        author = request.POST.get("author")                            
+        # author = User.objects.get(user=request.user)                            
         
         new_post = Content.objects.create(
             title = title,
@@ -63,6 +64,7 @@ def edit_blog(request, pk):
         blog.title = request.POST.get("title")
         blog.body = request.POST.get("content")
         blog.date = request.POST.get("date")
+        blog.author = request.POST.get("author")
         blog.content_type = content_type
             
         blog.save()
