@@ -1,5 +1,6 @@
 {% extends "adminapp/base/index.html" %}
 {% block content %}
+<<<<<<< HEAD
 <div class="user-list container" id="user-list-table">
   {% if submit_alert is True %}
   <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -13,6 +14,14 @@
       <button type="button" class="btn btn-warning btn-sm" id="filterAwaitingUsers" data-filter="None">Awaiting Approval</button>
       <button type="button" class="btn btn-success btn-sm" id="filterApproved" data-filter="True">Approved</button>
       <button type="button" class="btn btn-danger btn-sm" id="filterNotApproved" data-filter="False">Rejected</button>
+=======
+<div class="user-list container">
+  <h1 class="center-text">User List</h1>
+    <div class="filter-buttons center-text">
+      <button type="button" class="btn btn-primary" id="filterAllUsers" data-filter="all">All Users</button>
+      <button type="button" class="btn btn-primary" id="filterApproved" data-filter="True">Approved Users</button>
+      <button type="button" class="btn btn-primary" id="filterNotApproved" data-filter="False">Rejected Users</button>
+>>>>>>> main
     </div>
     <form method="post" action="{% url 'update_approval' %}" onsubmit="return alertAdmin();">
         {% csrf_token %}

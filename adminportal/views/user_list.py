@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from api.models import User
-from adminportal.serializers.serializers import UserListSerializer
 
 def user_is_superuser(user):
     return user.is_superuser

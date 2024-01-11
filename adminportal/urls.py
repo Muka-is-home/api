@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from adminportal.views import user_list, update_approval, edit_blog, create_blog, blog_list, delete_blog
+from adminportal.views import user_list, update_approval, edit_blog, create_blog, blog_list, delete_blog, create_shop_item, edit_shop_item, shop_list, delete_shop_item
 
 app_name = "adminportal"
 
@@ -12,5 +12,9 @@ urlpatterns = [
   path(f"{app_name}/edit_blog/<int:pk>", edit_blog, name="edit_blog"),
   path(f"{app_name}/create_blog", create_blog, name="create_blog"),
   path(f"{app_name}/blogs", blog_list, name="blogs"),
-  path(f"{app_name}/delete_blog/<int:pk>", delete_blog, name="delete_blog")
+  path(f"{app_name}/delete_blog/<int:pk>", delete_blog, name="delete_blog"),
+  path(f"{app_name}/create_shop_item", create_shop_item, name="create_shop_item"),
+  path(f"{app_name}/edit_shop_item/<int:pk>", edit_shop_item, name="edit_shop_item"),
+  path(f"{app_name}/shop_list", shop_list, name="shop_list"),
+  path(f"{app_name}/delete_shop_item/<int:pk>", delete_shop_item, name="delete_shop_item"),
 ]

@@ -8,6 +8,9 @@
           <a class="nav-link blog-button" href="{% url 'blogs' %}">
             <button class="btn btn-outline-info">Blog</button>
           </a>
+          <a class="nav-link shop-button" href="{% url 'shop_list' %}">
+            <button class="btn btn-outline-info">Shop</button>
+          </a>
           {% endif %}
         </div>
         <a class="nav-link" href={% if request.user.is_authenticated %}"{% url 'logout' %}"{% else %}"{% url 'user_login' %}"{% endif %}>

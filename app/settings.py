@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from json import loads
 from pathlib import Path
-
 from utils import get_env
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 env = get_env(__file__)
 
@@ -50,7 +53,8 @@ INSTALLED_APPS = [
     "api",
     "django_filters",
     "adminportal",
-    "adminapp"
+    "adminapp",
+    "cloudinary"
 ]
 
 REST_FRAMEWORK = {
@@ -176,3 +180,9 @@ EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+
+cloudinary.config(
+    cloud_name = env("CLOUDINARY_CLOUD_NAME"),
+    api_key = env("CLOUDINARY_API_KEY"),
+    api_secret = env("CLOUDINARY_API_SECRET"),
+)
