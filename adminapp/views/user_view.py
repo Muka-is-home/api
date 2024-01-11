@@ -5,7 +5,9 @@ from utils import get_env
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import SpecializationSerializer, StateSerializer, CountySerializer
-    
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def edit_profile(request, pk, type):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
@@ -70,6 +72,7 @@ def edit_profile(request, pk, type):
     "user_specializations": user_specialization_ids,
     })
 
+@login_required
 def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     user_data = UserFormSerializer(user).data
@@ -79,7 +82,8 @@ def user_detail(request, pk):
         })
     else:
         return render(request, "adminportal/access_denied.html")
-
+    
+@login_required
 def create_profile(request, type):
     if request.method == "POST":
         if User.objects.filter(email=request.POST.get("email")):
@@ -171,6 +175,7 @@ def create_profile(request, type):
     "specializations": specialization_data,
     })
 
+@login_required
 def user_licenses(request):
     if request.method == 'POST':
         user_profile = User.objects.get(user=request.user)
@@ -217,6 +222,7 @@ def user_licenses(request):
             "user": user_data
         })
 
+@login_required
 def edit_licenses(request, pk):
     user = get_object_or_404(User, pk=pk)
     if request.method == "POST":

@@ -6,7 +6,7 @@ from api.models import User
 def user_is_superuser(user):
     return user.is_superuser
 
-@user_passes_test(user_is_superuser, login_url="access_denied")
+@user_passes_test(user_is_superuser, login_url="user_login")
 def user_list(request):
     # order by descending id so newest additions will show first
     user_list = User.objects.exclude(user__is_superuser=True).order_by('-id')

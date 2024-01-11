@@ -8,9 +8,9 @@
       
       <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
-        <input type="text" name="title" id="title" class="form-control" value={{ blog.title }} required>
+        <input type="text" name="title" id="title" class="form-control" value="{{ blog.title }}" required>
       </div>
-      
+
       <div class="mb-3">
         <label for="content" class="form-label">Content:</label>
         <textarea name="content" id="content" class="form-control" rows="5" required>{{ blog.body }}</textarea>
@@ -28,7 +28,7 @@
 
       <div class="mb-3">
         <label for="date" class="form-label">Date:</label>
-        <input type="text" name="date" id="date" class="form-control" pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format yyyy-mm-dd" value={{ blog.date }} required>
+        <input type="text" name="date" id="date" class="form-control" pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format yyyy-mm-dd" value="{{ blog.date }}" required>
       </div>
 
       <div class="mb-3">
@@ -41,9 +41,9 @@
         {% endfor %}
       </div>
       
-      <button type="submit" class="btn btn-primary">Edit Post</button>
+      <button type="submit" class="btn btn-outline-success">Submit Post</button>
       <a href="{% url 'delete_blog' blog.id %}">
-      <button id="delete" type="button" class="btn btn-danger"><i class="bi bi-trash"></i> Delete Post</button>
+      <button id="delete" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete Post</button>
       </a>
     </form>
   </div>

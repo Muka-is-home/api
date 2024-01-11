@@ -1,18 +1,21 @@
-# Muka Backend Title here
-
-<!-- ![SafeBar](/images/Safe-Bar-img.png) -->
+# Muka API and Admin Portal
 
 ## What are we building?
+
+Muka is a virtual community dedicated to bridging the gap in minority homeownership.
+
+Buying and selling a home is one of the biggest investments of your lifetime. But recent numbers show that minorities are at a 41% homeowner rate, compared to their counterparts. With Muka, the information and resources are now at your fingertips.
 
 ## Tech Stack
 
 - Backend
   - Python
-  - Django Admin for Admin portal for bar maintenance and resources
+  - Django Rest Framework to serve A React Front End
+  - Django admin for approving realtors and vendors and creating/updating blog posts.
 - Deployment
   - Heroku
 - Styles
-  <!-- - [Bootstrap]( ) -->
+  - Bootstrap
 
 ## Get Started
 
@@ -42,6 +45,7 @@ Navigate to the [`deployment`](./documentation/deployment.md) file in the `docum
 ### ERD
 
 <!-- ### [Postman Documentation]() -->
+Check out the API endpoints with this [Postman Collection](https://www.postman.com/speeding-spaceship-78552/workspace/muka/overview)
 
 ## Contributors
 

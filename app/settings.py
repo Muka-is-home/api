@@ -91,6 +91,8 @@ CORS_ORIGIN_WHITELIST = loads(env("CORS_ORIGIN_WHITELIST"))
 
 ROOT_URLCONF = "app.urls"
 
+LOGIN_URL = "user_login"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
