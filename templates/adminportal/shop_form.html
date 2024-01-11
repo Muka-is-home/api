@@ -13,7 +13,7 @@
 
       <div class="mb-3">
         <label for="price" class="form-label">Price:</label>
-        <input type="number" step=".01" name="price" id="price" class="form-control" value="{{ item.price|default:"" }}" required>
+        <input type="number" min="0.01" step="0.01" max="2500" name="price" id="price" class="form-control" value="{{ item.price|default:"" }}" required>
       </div>
       
       <div class="mb-3">

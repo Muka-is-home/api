@@ -47,5 +47,6 @@ def update_approval(request):
         
         user_data = UserListSerializer(users, many=True).data
         return render(request, "adminportal/user_list.html", {
-            "users": user_data
+            "users": user_data,
+            "submit_alert": True
         })

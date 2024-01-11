@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from api.models import Content, ContentTag, ContentType, User, Tag
@@ -15,7 +15,8 @@ def create_blog(request):
         content = request.POST.get("content")
         date = request.POST.get("date")            
         tag_ids = request.POST.getlist("tags")
-        author = User.objects.get(user=request.user)                            
+        author = request.POST.get("author")                            
+        # author = User.objects.get(user=request.user)                            
         
         new_post = Content.objects.create(
             title = title,
@@ -35,9 +36,7 @@ def create_blog(request):
         users = User.objects.exclude(user__is_superuser=True)
         user_data = UserListSerializer(users, many=True).data
             
-        return render(request, "adminportal/user_list.html", {
-        "users": user_data
-        })
+        return redirect('blogs')
 
     content_types = ContentType.objects.all()
     content_type_data = ContentTypeSerializer(content_types, many=True).data
@@ -63,6 +62,7 @@ def edit_blog(request, pk):
         blog.title = request.POST.get("title")
         blog.body = request.POST.get("content")
         blog.date = request.POST.get("date")
+        blog.author = request.POST.get("author")
         blog.content_type = content_type
             
         blog.save()
@@ -76,12 +76,8 @@ def edit_blog(request, pk):
                 tag = tag,
                 content = blog
             )            
-        
-        blog_posts = Content.objects.all()
-        blog_data = ContentSerializer(blog_posts, many=True).data           
-        return render(request, "adminportal/blog_list.html", {
-        "blogs": blog_data
-        })
+          
+        return redirect('blogs')
 
     content_types = ContentType.objects.all()
     content_type_data = ContentTypeSerializer(content_types, many=True).data
@@ -122,7 +118,7 @@ def delete_blog(request, pk):
     blog = Content.objects.get(pk=pk)
     blog.delete()
     
-    return blog_list(request)
+    return redirect('blogs')
     
 
     
