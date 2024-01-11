@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from cloudinary import uploader, CloudinaryImage
 from api.models import ShopItem
@@ -22,9 +22,9 @@ def create_shop_item(request):
         uploader.upload(image_file, public_id=image_id, unique_filename=False, overwrite=True)
         image_url = CloudinaryImage(image_id).build_url()
         
-        new_item = ShopItem.objects.create(
+        ShopItem.objects.create(
           name=name,
-          price=price,
+          price=float(price),
           description=description,
           link=link,
           image=image_url
@@ -33,11 +33,9 @@ def create_shop_item(request):
         shop_items = ShopItem.objects.all()
         shop_item_data = ShopItemSerializer(shop_items, many=True).data
         
-        return render(request, "adminportal/shop_list.html", {
-          "items": shop_item_data
-        })
-    
-    return render(request, "adminportal/shop_form.html")
+        return redirect('shop_list')
+    else:
+        return render(request, "adminportal/shop_form.html")
     
 
 @user_passes_test(user_is_superuser, login_url="user_login")
@@ -67,9 +65,7 @@ def edit_shop_item(request, pk):
         shop_items = ShopItem.objects.all()
         shop_item_data = ShopItemSerializer(shop_items, many=True).data 
         
-        return render(request, "adminportal/shop_list.html", {
-          "items": shop_item_data
-        })
+        return redirect('shop_list')
 
     item_data = ShopItemSerializer(item).data
     
@@ -98,4 +94,4 @@ def delete_shop_item(request, pk):
     item = ShopItem.objects.get(pk=pk)
     item.delete()
     
-    return shop_list(request)
+    return redirect('shop_list')

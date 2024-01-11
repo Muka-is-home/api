@@ -3,7 +3,7 @@
 {% block content %}
   <div class="container mt-5">
     <h2>{% if item.id %}Edit Shop Item{% else %}Add Shop Item{% endif %}</h2>
-    <form method="post" enctype="multipart/form-data" action="{% if item.id %}{% url 'edit_shop_item' item.id %}{% else %}{% url 'create_shop_item' %}{% endif %}" class="mt-4">
+    <form method="POST" enctype="multipart/form-data" action="{% if item.id %}{% url 'edit_shop_item' item.id %}{% else %}{% url 'create_shop_item' %}{% endif %}" class="mt-4">
       {% csrf_token %}
       
       <div class="mb-3">
