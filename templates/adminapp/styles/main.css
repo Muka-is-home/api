@@ -75,3 +75,8 @@ body {
 .blog-button {
     margin-right: 5px;
 }
+
+.center-text {
+    text-align: center;
+    vertical-align: middle;
+}
