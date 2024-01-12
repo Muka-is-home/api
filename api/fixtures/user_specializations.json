@@ -11,7 +11,7 @@
     "model": "api.userspecialization",
     "pk": 2,
     "fields": {
-      "user": 2,
+      "user": 1,
       "specialization": 4
     }
   }
