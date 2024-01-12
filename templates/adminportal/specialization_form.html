@@ -1,0 +1,44 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2>{% if specialization.id %}Edit Specialization{% else %}Add Specialization{% endif %}</h2>
+    <form method="POST" action="{% if specialization.id %}{% url 'edit_specialization' specialization.id %}{% else %}{% url 'create_specialization' %}{% endif %}" class="mt-4">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="name" class="form-label">Tag Name:</label>
+        <input type="text" name="tag_name" id="tag_name" class="form-control" value="{{ specialization.tag_name|default:"" }}" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea name="description" id="description" class="form-control" rows="5" required>{{ specialization.description|default:"" }}</textarea>
+      </div>
+
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" name="on_homepage" id="flexSwitchCheckCheckedDisabled" {% if specialization.on_homepage %}checked{% endif %} {% if homepage_limit and not specialization.on_homepage %}disabled{% endif %}>
+        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Display on Homepage?</label>
+      </div>
+      {% if homepage_limit and not specialization.on_homepage %}
+      <div class="alert alert-danger">
+        Only 6 specializations may be on the homepage at a time! please edit another specialization if you would like this on the homepage.
+      </div>
+      {% endif %}
+      
+      <button type="submit" class="btn btn-outline-success">Submit Specialization</button>
+      {% if item.id %}
+      <a href="{% url 'delete_specialization' specialization.id %}">
+      <button id="delete" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i>Delete Specialization</button>
+      </a>
+      {% endif %}
+    </form>
+  </div>
+  <script>
+    document.getElementById("delete").addEventListener("click", function(e) {
+        if (!confirm("Are you sure you want to delete this specialization? This action cannot be undone!")) {
+            e.preventDefault();
+        }
+    });
+  </script>
+{% endblock %}
