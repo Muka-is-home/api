@@ -3,7 +3,7 @@
 {% block content %}
 <div class="userEditForm">
   <h5>* indicates required field</h5>
-  <form action="{% url 'edit_profile' user.id type %}" method="POST" id="user_form">
+  <form enctype="multipart/form-data" action="{% url 'edit_profile' user.id type %}" method="POST" id="user_form">
     {% csrf_token %}
     <div class="mb-3">
       <label for="name" class="form-label">Full Name*</label>
@@ -53,8 +53,8 @@
       <input type="url" class="form-control" id="profile-tiktok" name="tiktok" value="{{ user.tiktok|default_if_none:"" }}" aria-describedby="tiktokkHelp">
     </div>
     <div class="mb-3">
-      <label for="image" class="form-label">Image URL*</label>
-      <input type="url" class="form-control" id="profile-image" name="image" value="{{ user.image }}" aria-describedby="imagekHelp" required>
+      <label for="formFile" class="form-label">Upload Image*</label>
+      <input class="form-control" name="image" type="file" id="formFile" required>
     </div>
     <div class="mb-3">
       <label for="specializations" class="form-label">Specializations</label>
