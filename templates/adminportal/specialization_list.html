@@ -34,9 +34,9 @@
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ specializations.previous_page_number }}">previous</a>
         {% endif %}
-        <span class="current">
-            Page {{ specializations.number }} of {{ specializations.paginator.num_pages }}.
-        </span>
+        <small class="current">
+            Page {{ specializations.number|default:"1" }} of {{ specializations.paginator.num_pages|default:"1" }}
+        </small>
 
         {% if specializations.has_next %}
             <a href="?page={{ specializations.next_page_number }}">next</a>
