@@ -14,10 +14,10 @@ class SearchView(ViewSet):
         county = request.query_params.get('county')
         users = User.objects.filter(user_type__name=user_type)
         if user_type and not state:
-            user_counties = UserCounty.objects.filter(user__user_type__name=user_type)
+            user_counties = UserCounty.objects.filter(user__user_type__name=user_type, user__active=True)
             response = set([user_county.county.state.name for user_county in user_counties])
         elif user_type and state and not county:
-            counties = UserCounty.objects.filter(user__user_type__name=user_type, county__state__name=state)
+            counties = UserCounty.objects.filter(user__user_type__name=user_type, county__state__name=state, user__active=True)
             response = set([county.county.name for county in counties])
         else:
             user_list = users.filter(counties__county__name=county, counties__county__state__name=state, active=True)
