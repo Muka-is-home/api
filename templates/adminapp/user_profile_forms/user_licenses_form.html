@@ -1,19 +1,32 @@
 {% extends "adminapp/base/index.html" %}
 
 {% block content %}
-<form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();">
+<form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();" class="container">
   {% csrf_token %}
-  <div class="accordion" id="accordionExample">
+  <h1>State License and County Information</h1>
+  <p>Please select the states and counties that you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
+  <div class="accordion accordion-flush mt-1 mb-1" id="stateCounties">
     {% for state in states %}
     <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ state.id }}" aria-expanded="true" aria-controls="collapseOne">
-          {{ state.name }} 
-        </button>
+      <h2 class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#{{ state.name }}"
+        aria-expanded="false"
+        aria-controls="{{ state.name }}">
+        {{ state.name }} 
+      </button>
       </h2>
-      <div id="{{ state.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div 
+        id="{{ state.name }}"
+        class="accordion-collapse collapse"
+        data-bs-parent="#stateCounties">
         <div class="accordion-body">
-          <label for="userLicense" class="form-label">Enter your License #</label><input type="text" class="form-control" name="licenses" id="{{ state.id }}" aria-describedby="licenseHelp">
+          <label for="licenses" class="form-label">Enter your License #</label>
+          <input type="text" class="form-control" name="licenses" id="{{ state.id }}" aria-describedby="licenseHelp">
+
+          <label for="counties" class="form-label">Select the Counties You Operate</label>
+          
           {% for county in counties %}
             {% if county.state == state %}
             <div class="form-check">

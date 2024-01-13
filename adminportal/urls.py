@@ -3,7 +3,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 from adminportal.views import user_list, update_approval, edit_blog, create_blog, blog_list, delete_blog, create_shop_item, edit_shop_item, shop_list, delete_shop_item, create_specialization, edit_specialization, specialization_list, delete_specialization
 
-app_name = "adminportal"
+app_name = "muka"
 
 urlpatterns = [
   path(f"{app_name}/user_list", user_list, name="user_list"),

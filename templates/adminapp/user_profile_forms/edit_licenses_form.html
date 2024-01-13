@@ -24,7 +24,7 @@
         class="accordion-collapse collapse"
         data-bs-parent="#stateCounties">
         <div class="accordion-body">
-          <label for="userLicense" class="form-label">Enter your License #</label>
+          <label for="licenses" class="form-label">Enter your License #</label>
             <input type="text" class="form-control" name="licenses" id="{{ state.id }}" 
               {% for license in licenses %}
                 {% if license.state.id == state.id %}

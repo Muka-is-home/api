@@ -2,7 +2,7 @@
 from django.urls import path
 from django.views.generic import TemplateView
 from adminapp.views import UserLoginView, user_detail, profile_signup, edit_profile, create_profile, signup, user_licenses, user_logout, edit_licenses
-app_name = "adminapp"
+app_name = "muka"
 
 urlpatterns = [
   path(f"{app_name}/login", UserLoginView.as_view(), name="user_login"),
