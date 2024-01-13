@@ -36,9 +36,9 @@
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ items.previous_page_number }}">previous</a>
         {% endif %}
-        <span class="current">
-            Page {{ items.number }} of {{ items.paginator.num_pages }}.
-        </span>
+        <small class="current">
+            Page {{ items.number|default:"1" }} of {{ items.paginator.num_pages|default:"1" }}
+        </small>
 
         {% if items.has_next %}
             <a href="?page={{ items.next_page_number }}">next</a>
