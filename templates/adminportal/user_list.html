@@ -21,6 +21,7 @@
                 <tr>
                     <th>Email</th>
                     <th>Name</th>
+                    <th>Type</th>
                     <th>Approved</th>
                     <th>Rejected</th>
                     <th>Waiting For Approval</th>
@@ -32,6 +33,7 @@
                   <tr id="{{ user.active }}">
                     <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                     <td><a href="{% url 'user_detail' user.id %}">{{ user.name }}</a></td>
+                    <td><a href="{% url 'user_detail' user.id %}">{{ user.user_type.name }}</a></td>
                     <td>
                       <input type="radio" id="{{user.active}}" name="{{ user.id }}" value="approved--{{ user.id }}" {% if user.active %}checked{% endif %} disabled>
                     </td>
