@@ -27,7 +27,7 @@
       {% endif %}
       
       <button type="submit" class="btn btn-outline-success">Submit Specialization</button>
-      {% if item.id %}
+      {% if specialization.id %}
       <a href="{% url 'delete_specialization' specialization.id %}">
       <button id="delete" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i>Delete Specialization</button>
       </a>
