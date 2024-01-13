@@ -25,7 +25,11 @@ class ContentSerializer(ModelSerializer):
 
     class Meta:
         model = Content
+<<<<<<< HEAD
         fields = ('id', 'title', 'body', 'author', 'content_type', 'date', 'tags', 'image', 'slug')
+=======
+        fields = ('id', 'title', 'body', 'author', 'content_type', 'date', 'tags', 'image')
+>>>>>>> main
         depth = 1
 
 class SpecializationSerializer(serializers.ModelSerializer):
