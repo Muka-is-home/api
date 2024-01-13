@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
-from cloudinary import uploader, CloudinaryImage
 from api.models import ShopItem
-from utils import cloudinary_upload
+from utils import handle_image_upload
 from adminportal.views import user_is_superuser
 from adminportal.serializers import ShopItemSerializer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -16,7 +15,7 @@ def create_shop_item(request):
         price = request.POST.get("price")
         description = request.POST.get("description")
         link = request.POST.get("link")
-        image = cloudinary_upload(request, name)
+        image = handle_image_upload(request, name)
         
         
         ShopItem.objects.create(
@@ -46,13 +45,15 @@ def edit_shop_item(request, pk):
         price = request.POST.get("price")
         description = request.POST.get("description")
         link = request.POST.get("link")
-        image = cloudinary_upload(request, name)
+        image = handle_image_upload(request, name)
+        
+        if image is not None:
+            item.image = image
         
         item.name = name
         item.price = price
         item.description = description
         item.link = link
-        item.image = image
         
         item.save()
         shop_items = ShopItem.objects.all()
