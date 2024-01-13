@@ -17,7 +17,7 @@ def create_blog(request):
         date = request.POST.get("date")            
         tag_ids = request.POST.getlist("tags")
         author = request.POST.get("author")                            
-        # author = User.objects.get(user=request.user)
+        slug = request.POST.get("slug")                            
         image = cloudinary_upload(request, title)
                                  
         
@@ -27,7 +27,8 @@ def create_blog(request):
             author = author,
             content_type = content_type,
             date = date,
-            image = image
+            image = image,
+            slug = slug
         )
             
         for tag_id in tag_ids:
@@ -36,9 +37,6 @@ def create_blog(request):
                 tag = tag,
                 content = new_post
             )
-            
-        users = User.objects.exclude(user__is_superuser=True)
-        user_data = UserListSerializer(users, many=True).data
             
         return redirect('blogs')
 
@@ -72,6 +70,7 @@ def edit_blog(request, pk):
         blog.author = request.POST.get("author")
         blog.content_type = content_type
         blog.image = image
+        blog.slug = request.POST.get("slug")
         
             
         blog.save()
