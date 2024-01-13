@@ -33,7 +33,7 @@
                   <tr id="{{ user.active }}">
                     <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                     <td><a href="{% url 'user_detail' user.id %}">{{ user.name }}</a></td>
-                    <td><a href="{% url 'user_detail' user.id %}">{{ user.user_type.name }}</a></td>
+                    <td>{{ user.user_type.name }}</td>
                     <td>
                       <input type="radio" id="{{user.active}}" name="{{ user.id }}" value="approved--{{ user.id }}" {% if user.active %}checked{% endif %} disabled>
                     </td>
