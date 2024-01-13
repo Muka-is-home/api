@@ -12,6 +12,12 @@
       </div>
 
       <div class="mb-3">
+        <label for="slug" class="form-label">Slug:</label>
+        <small>A slug is the end of a url: https://mukaishome.com/1/this-is-the-slug</small>
+        <input type="text" name="slug" id="slug" class="form-control" value="{{ blog.slug }}" disabled>
+      </div>
+
+      <div class="mb-3">
         <label for="author" class="form-label">Author:</label>
         <input type="text" name="author" id="author" class="form-control" value="{{ blog.author }}" required>
       </div>
@@ -38,7 +44,11 @@
 
       <div class="mb-3">
         <label for="formFile" class="form-label">Upload Image</label>
+<<<<<<< HEAD
         <input class="form-control" name="image" type="file" id="formFile">
+=======
+        <input class="form-control" name="image" type="file" id="formFile" value="{{ blog.image }}" required>
+>>>>>>> main
       </div>
 
       <div class="mb-3">
