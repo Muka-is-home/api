@@ -137,51 +137,23 @@ def create_profile(request, type):
                 specialization=spec
                 )
 
-            
-            user_data = UserFormSerializer(user_profile).data
-            if type == "Realtor":
-                
-                states = State.objects.all()
-                state_data = StateSerializer(states, many=True).data
+            states = State.objects.all()
+            state_data = StateSerializer(states, many=True).data
 
-                counties = County.objects.all()
-                county_data = CountySerializer(counties, many=True).data
+            counties = County.objects.all()
+            county_data = CountySerializer(counties, many=True).data
                 
-                return render(request, "adminapp/user_profile_forms/user_licenses_form.html", {
-                "states": state_data,
-                "counties": county_data
-                })
-            else:
-                user_profile.ready_for_approval = True
-                user_profile.user.is_active = True
-                user_profile.user.save()
-                user_profile.save()
-                env = get_env(__file__)
-                email_to_muka = EmailMessage(
-                            f'new Muka applicant - {user_profile.name}',
-                            f'{user_profile.name} has applied for a spot on Muka!',
-                            f'{env("EMAIL_HOST_USER")}',
-                            [env("EMAIL_HOST_USER")]
-                        )
-                email_to_muka.send()
-                email_to_user = EmailMessage(
-                            f'Thanks for your application {user_profile.name}!',
-                            f'{user_profile.name}, We will review your profile and submit or reject you.',
-                            f'{env("EMAIL_HOST_USER")}',
-                            [user_profile.email]
-                        )
-                email_to_muka.send()
-                email_to_user.send()
-                return render(request, "adminapp/thank_you.html", {
-                    "user": user_data
-                    })
-
+            return render(request, "adminapp/user_profile_forms/user_licenses_form.html", {
+            "states": state_data,
+            "counties": county_data
+            })
+                
     specializations = Specialization.objects.all()
     specialization_data = SpecializationSerializer(specializations, many=True).data
 
     return render(request, "adminapp/user_profile_forms/profile_form.html", {
     "user": type,
-    "specializations": specialization_data,
+    "specializations": specialization_data
     })
 
 @login_required
