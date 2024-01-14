@@ -14,8 +14,39 @@
                       <p class="text-muted font-size-sm">{{ user.company }}</p>
                       {% if request.user.is_superuser %}
                       <a href="mailto:{{ user.email }}">
-                        <button class="btn btn-outline-primary">Message</button>
+                        <button class="btn btn-info">Message</button>
                       </a>
+                      {% endif %}
+                      {% if not request.user.is_superuser %}
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Change Profile Picture
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form method="POST" enctype="multipart/form-data" action="{% url 'update_profile_image' user.id %}" class="mt-4">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                  <input class="form-control" name="image" type="file" id="formFile">
+                                  <input type="hidden" name="slug" value="{{ user.name }}" type="text">
+                                </div>
+                                <button type="submit" class="btn btn-outline-success">Update Profile Picture</button>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       {% endif %}
                     </div>
                   </div>

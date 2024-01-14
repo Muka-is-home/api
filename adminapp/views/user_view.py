@@ -251,4 +251,21 @@ def edit_licenses(request, pk):
         "user_counties": user_county_ids,
         "licenses": user_data["licenses"]
     })
+
+@login_required
+def update_profile_picture(request, pk):
     
+    image = handle_image_upload(request, request.POST.get("slug"))
+    
+    if image:
+        
+        user = User.objects.get(pk=pk)
+        user.image = image
+        user.save()
+        
+        user_data = UserFormSerializer(user).data
+        return render(request, "adminapp/user_detail.html", {
+            "user": user_data
+        })
+
+    return redirect("user_list")
