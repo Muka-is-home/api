@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User as AuthUser
 from django.core.mail import EmailMessage
-from utils import get_env
+from utils import get_env, cloudinary_upload
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import SpecializationSerializer, StateSerializer, CountySerializer
@@ -22,7 +22,10 @@ def edit_profile(request, pk, type):
             })
         
         else:
-            user.name=request.POST.get("name")
+            name = request.POST.get("name")
+            image = cloudinary_upload(request, name)
+            
+            user.name=name
             user.website=request.POST.get("website")
             user.email=request.POST.get("email")
             user.bio=request.POST.get("bio")
@@ -31,6 +34,7 @@ def edit_profile(request, pk, type):
             user.company_phone=request.POST.get("company_phone")
             user.contact_no=request.POST.get("contact_no")
             user.facebook=request.POST.get("facebook")
+            user.image = image
             
             facebook = request.POST.get("facebook")
             instagram = request.POST.get("instagram")
@@ -94,9 +98,12 @@ def create_profile(request, type):
         else:
             auth_user = AuthUser.objects.get(username=request.user)
             user_type = UserType.objects.get(name=type)
+            
+            name = request.POST.get("name")
+            image = cloudinary_upload(request, name)
             user_profile = User(
                 user=auth_user,
-                name=request.POST.get("name"),
+                name=name,
                 email=request.POST.get("email"),
                 website=request.POST.get("website"),
                 bio=request.POST.get("bio"),
@@ -104,7 +111,7 @@ def create_profile(request, type):
                 company_address=request.POST.get("company_address"),
                 company_phone=request.POST.get("company_phone"),
                 contact_no=request.POST.get("contact_no"),
-                image=request.POST.get("image"),
+                image=image,
                 user_type=user_type
             )
 

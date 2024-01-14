@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','name', 'website', 'bio', 'email', 'user_type')
+        fields = ('id','name', 'website', 'bio', 'email', 'user_type', 'company', 'company_address', 'company_phone', 'contact_no', 'facebook', 'instagram', 'tiktok', 'image')
         depth = 1
 
 
@@ -25,7 +25,7 @@ class ContentSerializer(ModelSerializer):
 
     class Meta:
         model = Content
-        fields = ('id', 'title', 'body', 'author', 'content_type', 'date', 'tags')
+        fields = ('id', 'title', 'body', 'author', 'content_type', 'date', 'tags', 'image', 'slug')
         depth = 1
 
 class SpecializationSerializer(serializers.ModelSerializer):

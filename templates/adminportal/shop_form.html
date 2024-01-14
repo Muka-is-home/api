@@ -33,11 +33,13 @@
 
       
       <button type="submit" class="btn btn-outline-success">Submit Item</button>
+      
       {% if item.id %}
       <a href="{% url 'delete_shop_item' item.id %}">
-      <button id="delete" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete Item</button>
+        <button id="delete" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete Item</button>
       </a>
       {% endif %}
+      <a class="btn btn-danger" href="{% url 'shop_list' %}">Cancel</a>
     </form>
   </div>
   <script>

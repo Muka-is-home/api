@@ -3,12 +3,18 @@
 {% block content %}
   <div class="container mt-5">
     <h2>Edit Blog Post</h2>
-    <form method="post" action="{% url 'edit_blog' blog.id %}" class="mt-4">
+    <form method="post" enctype="multipart/form-data" action="{% url 'edit_blog' blog.id %}" class="mt-4">
       {% csrf_token %}
       
       <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
         <input type="text" name="title" id="title" class="form-control" value="{{ blog.title }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="slug" class="form-label">Slug:</label>
+        <small>A slug is the end of a url: https://mukaishome.com/1/this-is-the-slug</small>
+        <input type="text" name="slug" id="slug" class="form-control" value="{{ blog.slug }}" disabled>
       </div>
 
       <div class="mb-3">
@@ -34,6 +40,11 @@
       <div class="mb-3">
         <label for="date" class="form-label">Date:</label>
         <input type="text" name="date" id="date" class="form-control" pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format yyyy-mm-dd" value="{{ blog.date }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Upload Image</label>
+        <input class="form-control" name="image" type="file" id="formFile" value="{{ blog.image }}" required>
       </div>
 
       <div class="mb-3">

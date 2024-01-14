@@ -3,18 +3,18 @@
 {% block content %}
   <div class="container mt-5">
     <h2>Add Blog Post</h2>
-    <form method="post" action="{% url 'create_blog' %}" class="mt-4">
+    <form method="post" enctype="multipart/form-data" action="{% url 'create_blog' %}" class="mt-4">
       {% csrf_token %}
       
       <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
         <input type="text" name="title" id="title" class="form-control" required>
       </div>
+      
       <div class="mb-3">
         <label for="author" class="form-label">Author:</label>
         <input type="text" name="author" id="author" class="form-control" required>
       </div>
-      
       <div class="mb-3">
         <label for="content" class="form-label">Content:</label>
         <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
@@ -36,6 +36,11 @@
       </div>
 
       <div class="mb-3">
+        <label for="formFile" class="form-label">Upload Image</label>
+        <input class="form-control" name="image" type="file" id="formFile" required>
+      </div>
+
+      <div class="mb-3">
         <label class="form-label">Tags:</label>
         {% for tag in tags %}
           <div class="form-check">
@@ -46,6 +51,8 @@
       </div>
       
       <button type="submit" class="btn btn-primary">Create Post</button>
+      <a class="btn btn-danger" href="{% url 'blogs' %}">Cancel</a>
+
     </form>
   </div>
 {% endblock %}
