@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from utils import cloudinary_upload
+from utils import handle_image_upload
 from api.models import Content, ContentTag, ContentType, User, Tag
 from api.serializers import ContentSerializer, ContentTypeSerializer, TagSerializer
 from adminportal.views import user_is_superuser
@@ -18,7 +18,7 @@ def create_blog(request):
         tag_ids = request.POST.getlist("tags")
         author = request.POST.get("author")                            
         slug = request.POST.get("slug")                            
-        image = cloudinary_upload(request, title)
+        image = handle_image_upload(request, title)
                                  
         
         new_post = Content.objects.create(
@@ -62,16 +62,16 @@ def edit_blog(request, pk):
         content_type = ContentType.objects.get(pk=request.POST.get("content_type"))
         
         title = request.POST.get("title")
-        image = cloudinary_upload(request, title)
+        image = handle_image_upload(request, title)
+        
+        if image is not None:
+            blog.image = image
             
         blog.title = title
         blog.body = request.POST.get("content")
         blog.date = request.POST.get("date")
         blog.author = request.POST.get("author")
         blog.content_type = content_type
-        blog.image = image
-        blog.slug = request.POST.get("slug")
-        
             
         blog.save()
             

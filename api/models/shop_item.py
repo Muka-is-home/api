@@ -7,4 +7,4 @@ class ShopItem(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     link = models.URLField()
-    image = models.URLField()
+    image = models.URLField(null=True, blank=True)

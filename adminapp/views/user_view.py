@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User as AuthUser
 from django.core.mail import EmailMessage
-from utils import get_env, cloudinary_upload
+from utils import get_env, handle_image_upload
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import SpecializationSerializer, StateSerializer, CountySerializer
@@ -23,7 +23,10 @@ def edit_profile(request, pk, type):
         
         else:
             name = request.POST.get("name")
-            image = cloudinary_upload(request, name)
+            image = handle_image_upload(request, name)
+            
+            if image is not None:
+                user.image = image
             
             user.name=name
             user.website=request.POST.get("website")
@@ -34,7 +37,6 @@ def edit_profile(request, pk, type):
             user.company_phone=request.POST.get("company_phone")
             user.contact_no=request.POST.get("contact_no")
             user.facebook=request.POST.get("facebook")
-            user.image = image
             
             facebook = request.POST.get("facebook")
             instagram = request.POST.get("instagram")
@@ -100,7 +102,7 @@ def create_profile(request, type):
             user_type = UserType.objects.get(name=type)
             
             name = request.POST.get("name")
-            image = cloudinary_upload(request, name)
+            image = handle_image_upload(request, name)
             user_profile = User(
                 user=auth_user,
                 name=name,

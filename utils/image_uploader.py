@@ -1,7 +1,7 @@
-from cloudinary import uploader, CloudinaryImage
+from cloudinary import uploader
 
 
-def cloudinary_upload(request, slug):
+def handle_image_upload(request, slug):
     """takes a request and a slug or name/title of object instance
 
     Args:
@@ -10,11 +10,16 @@ def cloudinary_upload(request, slug):
 
     Returns:
         _type_: (string) - Cloudinary URL
+        _type_: None
     """
-    image_file = request.FILES["image"]
-    image_id = slug.replace(" ", "-")
+    if "image" in request.FILES:
+        
+        image_file = request.FILES["image"]
+        image_id = slug.replace(" ", "-")
+        
+        image = uploader.upload(image_file, public_id=image_id, unique_filename=False, overwrite=True)
+        
+        return image["url"]
     
-    image = uploader.upload(image_file, public_id=image_id, unique_filename=False, overwrite=True)
-    
-    return image["url"]
+    return None
     
