@@ -15,9 +15,9 @@ from json import loads
 from pathlib import Path
 from utils import get_env
 
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.api
 
 env = get_env(__file__)
 
@@ -179,8 +179,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
-cloudinary.config(
-    cloud_name = env("CLOUDINARY_CLOUD_NAME"),
-    api_key = env("CLOUDINARY_API_KEY"),
-    api_secret = env("CLOUDINARY_API_SECRET"),
-)
+# cloudinary.config(
+#     cloud_name = env("CLOUDINARY_CLOUD_NAME"),
+#     api_key = env("CLOUDINARY_API_KEY"),
+#     api_secret = env("CLOUDINARY_API_SECRET"),
+# )
