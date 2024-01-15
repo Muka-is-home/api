@@ -51,7 +51,7 @@ python3 manage.py createsuperuser --email admin@gmail.com --username admin
 
 enter your password for the NEW SUPER USER twice
 
-To login navigate to: <http://127.0.0.1:8000/adminapp/login>
+To login navigate to: <http://127.0.0.1:8000/muka/login>
 
 ## If you get errors
 - make sure that you are in the shell environment
