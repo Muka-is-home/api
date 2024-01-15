@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import user_passes_test
-from utils import get_env
+from utils import get_env, REJECTION_TEMPLATE, APPROVAL_TEMPLATE
 from api.models import User
 from adminportal.serializers.serializers import UserListSerializer
 from adminportal.views import user_is_superuser
@@ -21,7 +21,7 @@ def update_approval(request):
                     user.save()
                     email = EmailMessage(
                         'Welcome to Muka!',
-                        'message body',
+                        APPROVAL_TEMPLATE,
                         f'{env("EMAIL_HOST_USER")}',
                         [user.email]
                     )
@@ -32,8 +32,8 @@ def update_approval(request):
                     user.ready_for_approval = False
                     user.save()
                     email = EmailMessage(
-                        'Concerning your profile at Muka',
-                        'message body',
+                        'Application Status Update',
+                        REJECTION_TEMPLATE,
                         f'{env("EMAIL_HOST_USER")}',
                         [user.email]
                     )
