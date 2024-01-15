@@ -12,7 +12,8 @@
       "company_phone": "1234354433", 
       "contact_no": "4567893333", 
       "user_type": 1,
-      "ready_for_approval": 0
+      "ready_for_approval": 0,
+      "image": ""
     }
   }
 ]
