@@ -1,0 +1,48 @@
+{% extends "adminapp/base/index.html" %}
+{% block content %}
+<div class="specialization-list container">
+  <h1 class="center-text">Specializations</h1>
+  <h4 class="center-text">Click specialization to see details</h4>
+  <div class="shopButtons">
+    <a href="{% url 'create_specialization' %}">
+      <button class="btn btn-outline-dark">Add a specialization</button>
+    </a>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th class="center-text">Tag Name</th>
+            <th class="center-text">Description</th>
+            <th class="center-text">On Homepage?</th>
+        </tr>
+    </thead>
+    <tbody id="itemTable">
+        {% for specialization in specializations %}
+        <div>
+          <tr>
+            <td class="center-text"><a href="{% url 'edit_specialization' specialization.id %}">{{ specialization.tag_name }}</a></td>
+            <td class="center-text">{{ specialization.description }}</td>
+            <td class="center-text">{% if specialization.on_homepage %}Yes{% else %}No{% endif %}</td>
+          </tr>
+        </div>
+        {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    <span class="step-links">
+        {% if specializations.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ specializations.previous_page_number }}">previous</a>
+        {% endif %}
+        <small class="current">
+            Page {{ specializations.number|default:"1" }} of {{ specializations.paginator.num_pages|default:"1" }}
+        </small>
+
+        {% if specializations.has_next %}
+            <a href="?page={{ specializations.next_page_number }}">next</a>
+            <a href="?page={{ specializations.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+{% endblock %}

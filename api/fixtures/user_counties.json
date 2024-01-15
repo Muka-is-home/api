@@ -11,7 +11,7 @@
     "model": "api.usercounty",
     "pk": 2,
     "fields": {
-      "user": 2,
+      "user": 1,
       "county": 2
     }
   },

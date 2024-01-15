@@ -5,4 +5,4 @@ from .tag import Tag
 
 class ContentTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    content = models.ForeignKey(Content, on_delete=models.CASCADE)
+    content = models.ForeignKey(Content, on_delete=models.CASCADE, related_name='tags')

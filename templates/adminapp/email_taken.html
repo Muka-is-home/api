@@ -1,0 +1,10 @@
+{% extends "adminapp/base/index.html" %}
+
+{%block content%}
+<div>
+  <h1 class="text-center">I'm sorry email is taken</h1>
+  <a href={% if edit %}"{% url 'edit_profile' pk type %}"{% else %}"{% url 'profile' type %}"{% endif %} class="text-center">
+    <button class="btn btn-primary">Return to Form</button>
+  </a>
+</div>
+{% endblock %}

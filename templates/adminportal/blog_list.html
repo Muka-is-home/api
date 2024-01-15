@@ -1,0 +1,47 @@
+{% extends "adminapp/base/index.html" %}
+{% block content %}
+<div class="blog-list container">
+  <h1 class="center-text">Blog Posts</h1>
+  <div class="blogButtons">
+    <a href="{% url 'create_blog' %}">
+      <button class="btn btn-outline-dark">Create a Post</button>
+    </a>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">Title</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Image</th>
+        </tr>
+    </thead>
+    <tbody id="blogTable">
+        {% for blog in blogs %}
+        <div>
+          <tr>
+            <td class="text-center"><a href="{% url 'edit_blog' blog.id %}">{{ blog.title }}</a></td>
+            <td class="text-center">{{ blog.date }}</td>
+            <td class="text-center"><img src="{{ blog.image }}" width="200" height="150" /></td>
+          </tr>
+        </div>
+        {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    <span class="step-links">
+        {% if blogs.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ blogs.previous_page_number }}">previous</a>
+        {% endif %}
+        <small class="current">
+            Page {{ blogs.number|default:"1" }} of {{ blogs.paginator.num_pages|default:"1" }}
+        </small>
+
+        {% if blogs.has_next %}
+            <a href="?page={{ blogs.next_page_number }}">next</a>
+            <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+{% endblock %}

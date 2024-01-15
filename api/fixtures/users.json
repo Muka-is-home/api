@@ -7,32 +7,13 @@
       "name": "Justin Ferwerda",
       "website": "https://github.com/Justin-Ferwerda",
       "bio": "I am testing MUKA",
+      "company": "Muka",
+      "company_address": "123 Front st.",
+      "company_phone": "1234354433", 
+      "contact_no": "4567893333", 
       "user_type": 1,
-      "active": 1
-    }
-  },
-  {
-    "model": "api.user",
-    "pk": 2,
-    "fields": {
-      "user": 2,
-      "name": "Natalie Ferwerda",
-      "website": "https://www.instagram.com/natalieriveraferwerda/?hl=en",
-      "bio": "MUKA tester",
-      "user_type": 2,
-      "active": 1
-    }
-  },
-  {
-    "model": "api.user",
-    "pk": 3,
-    "fields": {
-      "user": 3,
-      "name": "Trinity Christiana Terry",
-      "website": "https://www.github.com/Trinity",
-      "bio": "Vendor extraordinaire",
-      "user_type": 2,
-      "active": 1
+      "ready_for_approval": 0,
+      "image": ""
     }
   }
 ]

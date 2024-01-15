@@ -21,10 +21,10 @@ class AgentView(ViewSet):
 
     def list(self, request):
         """returns list of agents"""
-        agents = User.objects.filter(user_type__name='Realtor')
+        agents = User.objects.filter(user_type__name='Realtor', active=True)
         specialty = request.query_params.get('specialty')
         if specialty is not None:
-            agents = agents.filter(user_specialization__specialization__tag_name=specialty)
+            agents = agents.filter(specializations__specialization__tag_name=specialty)
 
         serializer = UserSerializer(agents, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

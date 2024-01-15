@@ -1,0 +1,65 @@
+{% extends "adminapp/base/index.html" %}
+
+{% block content %}
+<form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();" class="container">
+  {% csrf_token %}
+  <h1>State License and County Information</h1>
+  <p>Please select the states and counties that you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
+  <div class="accordion accordion-flush mt-1 mb-1" id="stateCounties">
+    {% for state in states %}
+    <div class="accordion-item">
+      <h2 class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#{{ state.name }}"
+        aria-expanded="false"
+        aria-controls="{{ state.name }}">
+        {{ state.name }} 
+      </button>
+      </h2>
+      <div 
+        id="{{ state.name }}"
+        class="accordion-collapse collapse"
+        data-bs-parent="#stateCounties">
+        <div class="accordion-body">
+          <label for="licenses" class="form-label">Enter your License #</label>
+          <input type="text" class="form-control" name="licenses" id="{{ state.id }}" aria-describedby="licenseHelp">
+
+          <label for="counties" class="form-label">Select the Counties You Operate</label>
+          
+          {% for county in counties %}
+            {% if county.state == state %}
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="{{ county.id }}" name="counties">{{ county.name }}</input>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <input type="hidden" name="userLicenses">
+  </div>
+  <button type="Submit" class="btn btn-primary">Submit</button>
+</form>
+<script>
+  function prepareLicenseData() {
+
+    const licenses = document.querySelectorAll('input[name="licenses"]');
+    const userLicenses = [];
+
+    for (let i = 0; i < licenses.length; i++) {
+      if (licenses[i].value) {
+        const userLicense = `${licenses[i].id}-${licenses[i].value}`
+        userLicenses.push(userLicense)
+      }
+    }
+
+    const hiddenInput = document.querySelector('input[name="userLicenses"]');
+    hiddenInput.value = userLicenses.join(', ');
+    
+    return true;
+
+  }
+</script>
+{% endblock %}
