@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User as AuthUser
 from django.core.mail import EmailMessage
-from utils import get_env, handle_image_upload
+from utils import get_env, handle_image_upload, THANK_YOU_TEMPLATE
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import SpecializationSerializer, StateSerializer, CountySerializer
@@ -180,14 +180,14 @@ def user_licenses(request):
         env = get_env(__file__)
         email_to_muka = EmailMessage(
                     f'new Muka applicant - {user_profile.name}',
-                    f'{user_profile.name} has applied for a spot on Muka!',
+                    f'{user_profile.name} has applied for Muka!',
                     f'{env("EMAIL_HOST_USER")}',
                     [env("EMAIL_HOST_USER")]
                 )
         email_to_muka.send()
         email_to_user = EmailMessage(
                     f'Thanks for your application {user_profile.name}!',
-                    f'{user_profile.name}, We will review your profile and submit or reject you.',
+                    THANK_YOU_TEMPLATE,
                     f'{env("EMAIL_HOST_USER")}',
                     [user_profile.email]
                 )
@@ -251,4 +251,21 @@ def edit_licenses(request, pk):
         "user_counties": user_county_ids,
         "licenses": user_data["licenses"]
     })
+
+@login_required
+def update_profile_picture(request, pk):
     
+    image = handle_image_upload(request, request.POST.get("slug"))
+    
+    if image:
+        
+        user = User.objects.get(pk=pk)
+        user.image = image
+        user.save()
+        
+        user_data = UserFormSerializer(user).data
+        return render(request, "adminapp/user_detail.html", {
+            "user": user_data
+        })
+
+    return redirect("user_list")
