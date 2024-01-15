@@ -48,13 +48,6 @@ Navigate to the [`deployment`](./documentation/deployment.md) file in the `docum
 Check out the API endpoints with this [Postman Collection](https://www.postman.com/speeding-spaceship-78552/workspace/muka/overview)
 
 ## Contributors
-
-### Team Leads
-
-### Frontend Engineers
-
-### Backend Engineers
-
-### Designers and UXI Engineers
-
-### QA
+<a href="https://github.com/Muka-is-home/api/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Muka-is-home/api" />
+</a>
