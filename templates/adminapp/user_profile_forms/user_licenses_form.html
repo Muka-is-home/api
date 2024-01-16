@@ -11,14 +11,14 @@
       <h2 class="accordion-button collapsed"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#{{ state.name.replace(" ", "") }}"
+        data-bs-target="#{{ state.name|slugify }}"
         aria-expanded="false"
         aria-controls="{{ state.name }}">
         {{ state.name }} 
       </button>
       </h2>
       <div 
-        id="{{ state.name.replace(" ", "") }}"
+        id="{{ state.name|slugify }}"
         class="accordion-collapse collapse"
         data-bs-parent="#stateCounties">
         <div class="accordion-body">
