@@ -33,11 +33,14 @@
               {% endfor %} 
               aria-describedby="licenseHelp">
           
-              <label for="counties" class="form-label">Select the Counties You Operate</label>
+              <h4>Select the Counties You Operate</h4>
           {% for county in counties %}
             {% if county.state == state %}
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="{{ county.id }}" name="counties" {% if county.id in user_counties %}checked{% endif %}>{{ county.name }}</input>
+              <input class="form-check-input" type="checkbox" id="{{ county.name|slugify }}" value="{{ county.id }}" name="counties" {% if county.id in user_counties %}checked{% endif %}>
+              <label class="form-check-label" for="{{ county.name|slugify }}">
+                {{ county.name }}
+              </label>
             </div>
             {% endif %}
           {% endfor %}
