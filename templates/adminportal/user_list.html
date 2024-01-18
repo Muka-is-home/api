@@ -32,7 +32,6 @@
             <tbody id="userTable">
                 {% for user in users %}
                 <div class="radio-group">
-                  <h3>{{ user.active }}</h3>
                   <tr 
                     {% if user.active is False and user.ready_for_approval %}
                     id="Inactive"
