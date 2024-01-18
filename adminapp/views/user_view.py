@@ -28,9 +28,13 @@ def edit_profile(request, pk, type):
             if image is not None:
                 user.image = image
             
+            email = request.POST.get("email")
+            user.user.email = email
+            user.user.save()
+            
             user.name=name
             user.website=request.POST.get("website")
-            user.email=request.POST.get("email")
+            user.email=email
             user.bio=request.POST.get("bio")
             user.company=request.POST.get("company")
             user.company_address=request.POST.get("company_address")
@@ -91,22 +95,27 @@ def user_detail(request, pk):
     
 @login_required
 def create_profile(request, type):
+    
     if request.method == "POST":
-        if User.objects.filter(email=request.POST.get("email")):
+        email = request.POST.get("email")
+        
+        if User.objects.filter(email=email):
             return render(request, "adminapp/email_taken.html", {
                 "type": type
             })
         
         else:
-            auth_user = AuthUser.objects.get(username=request.user)
+            
+            request.user.email = email
+            request.user.save()
             user_type = UserType.objects.get(name=type)
             
             name = request.POST.get("name")
             image = handle_image_upload(request, name)
             user_profile = User(
-                user=auth_user,
+                user=request.user,
                 name=name,
-                email=request.POST.get("email"),
+                email=email,
                 website=request.POST.get("website"),
                 bio=request.POST.get("bio"),
                 company=request.POST.get("company"),
