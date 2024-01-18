@@ -105,15 +105,15 @@ def create_profile(request, type):
             })
         
         else:
-            auth_user = AuthUser.objects.get(username=request.user)
-            auth_user.email = email
-            auth_user.save()
+            
+            request.user.email = email
+            request.user.save()
             user_type = UserType.objects.get(name=type)
             
             name = request.POST.get("name")
             image = handle_image_upload(request, name)
             user_profile = User(
-                user=auth_user,
+                user=request.user,
                 name=name,
                 email=email,
                 website=request.POST.get("website"),
