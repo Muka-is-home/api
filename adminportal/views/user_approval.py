@@ -42,6 +42,11 @@ def update_approval(request):
                 user.active = None
                 user.ready_for_approval = True
                 user.save()
+            
+            elif status == 'inactive':
+                user.active = False
+                user.ready_for_approval = True
+                user.save()
 
         users = User.objects.exclude(user__is_superuser=True)
         
