@@ -8,7 +8,8 @@
       
       <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
-        <input type="text" name="title" id="title" class="form-control" value="{{ blog.title }}" required>
+        <small>Max length: 55 characters</small>
+        <input type="text" name="title" id="title" class="form-control" maxlength="55" value="{{ blog.title }}" required>
       </div>
 
       <div class="mb-3">
