@@ -3,7 +3,10 @@
   <div>
     <h2>Register</h2>
     <form method="post">
-      {% csrf_token %} {{ form.as_p }}
+      {% csrf_token %} 
+      <div class="custom-form">
+        {{ form.as_p }}
+      </div>
       <button type="submit" class="btn btn-success">Sign up</button>
     </form>
   </div>
