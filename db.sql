@@ -9,3 +9,7 @@ SET active = 1
 WHERE id = 1
 
 DELETE FROM api_user WHERE id = 1
+
+UPDATE auth_user
+SET email = 'justin.ferwerda@gmail.com'
+WHERE id = 8

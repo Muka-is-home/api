@@ -1,6 +1,7 @@
 # https://www.django-rest-framework.org/api-guide/routers/
 from django.urls import path
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
 from adminapp.views import UserLoginView, user_detail, profile_signup, edit_profile, create_profile, signup, user_licenses, user_logout, edit_licenses, update_profile_picture
 app_name = "muka"
 
@@ -20,3 +21,12 @@ urlpatterns = [
   path(f"{app_name}/edit_licenses/<int:pk>", edit_licenses, name="edit_licenses"),
   path(f"{app_name}/update_profile_image/<int:pk>", update_profile_picture, name='update_profile_image')
 ]
+
+password_reset_paths = [
+  path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "adminapp/password_reset/reset_password.html"), name ='reset_password'),
+  path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "adminapp/password_reset/password_reset_sent.html"), name ='password_reset_done'),
+  path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name = "adminapp/password_reset/password_reset_form.html"), name ='password_reset_confirm'),
+  path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "adminapp/password_reset/password_reset_done.html"), name ='password_reset_complete')
+]
+
+urlpatterns += password_reset_paths

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User as AuthUser
 from django.core.mail import EmailMessage
-from utils import get_env, handle_image_upload, THANK_YOU_TEMPLATE
+from utils import get_env, handle_image_upload, signup_email_body
 from api.models import User, UserType, Specialization, UserSpecialization, County, UserCounty, UserLicense, State
 from adminapp.serializers import UserFormSerializer
 from api.serializers import SpecializationSerializer, StateSerializer, CountySerializer
@@ -28,9 +28,13 @@ def edit_profile(request, pk, type):
             if image is not None:
                 user.image = image
             
+            email = request.POST.get("email")
+            user.user.email = email
+            user.user.save()
+            
             user.name=name
             user.website=request.POST.get("website")
-            user.email=request.POST.get("email")
+            user.email=email
             user.bio=request.POST.get("bio")
             user.company=request.POST.get("company")
             user.company_address=request.POST.get("company_address")
@@ -91,22 +95,27 @@ def user_detail(request, pk):
     
 @login_required
 def create_profile(request, type):
+    
     if request.method == "POST":
-        if User.objects.filter(email=request.POST.get("email")):
+        email = request.POST.get("email")
+        
+        if User.objects.filter(email=email):
             return render(request, "adminapp/email_taken.html", {
                 "type": type
             })
         
         else:
-            auth_user = AuthUser.objects.get(username=request.user)
+            
+            request.user.email = email
+            request.user.save()
             user_type = UserType.objects.get(name=type)
             
             name = request.POST.get("name")
             image = handle_image_upload(request, name)
             user_profile = User(
-                user=auth_user,
+                user=request.user,
                 name=name,
-                email=request.POST.get("email"),
+                email=email,
                 website=request.POST.get("website"),
                 bio=request.POST.get("bio"),
                 company=request.POST.get("company"),
@@ -168,14 +177,15 @@ def user_licenses(request):
             )
 
         user_licenses = request.POST.get("userLicenses").split(",")
-        for user_license in user_licenses:
-            state_id, license_no = user_license.split("-")
-            state = State.objects.get(pk=int(state_id))
-            UserLicense.objects.create(
-                state=state,
-                user=user_profile,
-                license_no = license_no
-            )
+        if len(user_licenses[0]):
+            for user_license in user_licenses:
+                state_id, license_no = user_license.split("-")
+                state = State.objects.get(pk=int(state_id))
+                UserLicense.objects.create(
+                    state=state,
+                    user=user_profile,
+                    license_no = license_no
+                )
 
         env = get_env(__file__)
         email_to_muka = EmailMessage(
@@ -186,8 +196,8 @@ def user_licenses(request):
                 )
         email_to_muka.send()
         email_to_user = EmailMessage(
-                    f'Thanks for your application {user_profile.name}!',
-                    THANK_YOU_TEMPLATE,
+                    f'Thank You for Taking the First Step!',
+                    signup_email_body(user_profile.name),
                     f'{env("EMAIL_HOST_USER")}',
                     [user_profile.email]
                 )
@@ -199,9 +209,7 @@ def user_licenses(request):
         user_profile.user.is_active = True
         user_profile.user.save()
         user_data = UserFormSerializer(user_profile).data
-        return render(request, "adminapp/thank_you.html", {
-            "user": user_data
-        })
+        return render(request, "adminapp/thank_you.html")
 
 @login_required
 def edit_licenses(request, pk):
@@ -222,14 +230,15 @@ def edit_licenses(request, pk):
             )
             
         user_licenses = request.POST.get("userLicenses").split(",")
-        for user_license in user_licenses:
-            state_id, license_no = user_license.split("-")
-            state = State.objects.get(pk=int(state_id))
-            UserLicense.objects.create(
-                state=state,
-                user=user,
-                license_no=license_no
-            )
+        if len(user_licenses[0]):
+            for user_license in user_licenses:
+                state_id, license_no = user_license.split("-")
+                state = State.objects.get(pk=int(state_id))
+                UserLicense.objects.create(
+                    state=state,
+                    user=user,
+                    license_no=license_no
+                )
         user_data = UserFormSerializer(user).data
         return render(request, "adminapp/user_detail.html", {
             "user": user_data
