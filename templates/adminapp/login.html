@@ -4,7 +4,8 @@
 <div class="container custom-form">
     <form method="post" novalidate>
         {% csrf_token %}
-        <h2 class="text-center mt-3">Please Log In To Continue</h2>
+        <h2 class="text-center mt-3">Muka Login - Welcome Back!</h2>
+        <p class="text-center">Let's get you logged in</p>
         <div class="login-form">
             {% if messages %}
                 <div class="messages">
@@ -27,8 +28,8 @@
         </div>
         <input type="submit" value="Login" class="btn btn-success mt-3">
         <hr>
-        <p class="text-center">Don't have an account? <a href="{% url 'signup' %}">Join Now</a></p>
-        <p class="text-center">Forgot Password? <a href="{% url 'reset_password' %}">Click Here</a></p>
+        <p class="text-center">Don't have an account? <a href="{% url 'signup' %}" style="color:#1e967f">Join Now</a></p>
+        <p class="text-center">Forgot Password? <a href="{% url 'reset_password' %}" style="color:#1e967f">Click Here</a></p>
     </form>
 
 </div>
