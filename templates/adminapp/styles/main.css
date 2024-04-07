@@ -6,10 +6,13 @@
 
 /** 1. MAIN STYLES *********************/
 body {
-    color: #ffffff;
+    color: #000000;
     text-align: left;
-    background-color: #1e967f;
+    background-color: #ffffff;
 }
+a {
+    color: #1e967f;
+}    
 .main-body {
     padding: 15px;
 }
@@ -66,6 +69,10 @@ body {
 .form-label {
     font-size: 1.2em;
     font-weight: bold;
+}
+
+.btn-success {
+    background-color: #1e967f;
 }
 
 .nav-buttons {
