@@ -24,12 +24,11 @@
 
     </div>
     <div class="align-self-end">
-      <a class="nav-link" href={% if request.user.is_authenticated %}"{% url 'logout' %}"{% else %}"{% url 'user_login' %}"{% endif %}>
-        {% if request.user.is_authenticated %}
-        {% else %}
+      {% if request.user.is_authenticated %}
+      <a class="nav-link" href="{% url 'logout' %}">
           <button class="btn btn-outline-info" id="logout">Logout</button>
-        {% endif %}
       </a>
+      {% endif %}
     </div>
   </div>
 </nav>
