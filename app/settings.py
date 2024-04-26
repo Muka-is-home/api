@@ -41,8 +41,7 @@ DEBUG = False
 #env("DEBUG")
 IS_PROD = loads(env("IS_PROD"))
 
-ALLOWED_HOSTS = ["app.mukaishome.com", "herokuapp.com", "localhost", ""]
-#loads(env("ALLOWED_HOSTS"))
+ALLOWED_HOSTS = loads(env("ALLOWED_HOSTS"))
 
 
 # Application definition
