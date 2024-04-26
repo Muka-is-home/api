@@ -37,10 +37,12 @@ STATIC_URL = "static/"
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = False
+#env("DEBUG")
 IS_PROD = loads(env("IS_PROD"))
 
-ALLOWED_HOSTS = loads(env("ALLOWED_HOSTS"))
+ALLOWED_HOSTS = ["app.mukaishome.com", "herokuapp.com"]
+#loads(env("ALLOWED_HOSTS"))
 
 
 # Application definition
