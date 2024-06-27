@@ -16,8 +16,10 @@ class UserLoginView(LoginView):
             return reverse_lazy('user_detail', args=[user.id])
           elif user.active is None:
             return reverse_lazy('thank_you')
-          else:
+          elif not user.active and not user.ready_for_approval:
             return reverse_lazy('rejection')
+          else:
+            return reverse_lazy('inactive')
             
         except User.DoesNotExist:
           if self.request.user.is_superuser:
