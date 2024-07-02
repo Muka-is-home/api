@@ -4,7 +4,7 @@
 <div class="container userCreateForm" style="max-width: fit-content;">
   <h2>Profile Setup</h2>
   <p>* indicates required field</p>
-  <form enctype="multipart/form-data" action="{% url 'profile' user%}" method="POST" id="user_form" onSubmit="prepareLicenseData">
+  <form enctype="multipart/form-data" action="{% url 'profile' user%}" method="POST" id="user_form">
     {% csrf_token %}
     <div class="mb-3">
       <label for="name" class="form-label">Full Name*</label>
