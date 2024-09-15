@@ -58,12 +58,14 @@
       <input class="form-control" name="image" type="file" id="formFile">
     </div>
     <div class="mb-3">
+      {% if "Vendor" in request.path %}
       <label for="specializations" class="form-label">Specializations</label>
       {% for specialization in specializations %}
       <div class="form-check">
           <input class="form-check-input" type="checkbox" name="specializations" value="{{ specialization.id }}" {% if specialization.id in user_specializations %}checked{% endif %}>{{ specialization.tag_name }}</input>
       </div>
       {% endfor %}
+      {% endif %}
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
     <a class="btn btn-danger" href="{% url 'user_detail'  user.id %}">Cancel</a>
