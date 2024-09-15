@@ -5,7 +5,7 @@
   {% csrf_token %}
   <h1>State License and County Information</h1>
   <p>Please select the states and counties in which you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
-  <button type="Submit" class="btn btn-success">Submit</button>
+  <button type="Submit" class="btn btn-success" onsubmit="this.disabled = true;">Submit</button>
   <div class="accordion accordion-flush mt-1 mb-1" id="stateCounties">
     {% for state in states %}
     <div class="accordion-item">
