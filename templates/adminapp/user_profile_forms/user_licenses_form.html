@@ -4,7 +4,8 @@
 <form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();" class="container">
   {% csrf_token %}
   <h1>State License and County Information</h1>
-  <p>Please select the states and counties that you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
+  <p>Please select the states and counties in which you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
+  <button type="Submit" class="btn btn-success">Submit</button>
   <div class="accordion accordion-flush mt-1 mb-1" id="stateCounties">
     {% for state in states %}
     <div class="accordion-item">
@@ -25,7 +26,7 @@
           <label for="licenses" class="form-label">Enter your License #</label>
           <input type="text" class="form-control" name="licenses" id="{{ state.id }}" aria-describedby="licenseHelp">
 
-          <label for="counties" class="form-label">Select the Counties You Operate</label>
+          <label for="counties" class="form-label">Select the counties in which you operate:</label>
           
           {% for county in counties %}
             {% if county.state == state %}
@@ -40,7 +41,6 @@
     {% endfor %}
     <input type="hidden" name="userLicenses">
   </div>
-  <button type="Submit" class="btn btn-success">Submit</button>
 </form>
 <script>
   function prepareLicenseData() {
