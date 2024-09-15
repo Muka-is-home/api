@@ -2,9 +2,9 @@
 
 {%block content%}
 <div>
-  <h2 class="text-center">We're sorry, but this email address is already taken</h2>
+  <h2 class="text-center" style="max-width: fit-content;">We're sorry, but this email address is already taken.</h2>
   <a href={% if edit %}"{% url 'edit_profile' pk type %}"{% else %}"{% url 'profile' type %}"{% endif %} class="text-center">
-    <button class="btn btn-success">Go Back</button>
+    <button class="btn btn-success">Start Over</button>
   </a>
 </div>
 {% endblock %}
