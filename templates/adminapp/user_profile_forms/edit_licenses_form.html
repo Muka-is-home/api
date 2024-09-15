@@ -5,6 +5,7 @@
   {% csrf_token %}
   <h1>State License and County Information</h1>
   <p>Please select the states and counties that you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
+  <button type="submit" class="btn btn-success" onsubmit="this.disabled = true;">Submit</button>
   <div class="accordion accordion-flush mt-1 mb-1" id="stateCounties">
     {% for state in states %}
     <div class="accordion-item">
@@ -50,8 +51,6 @@
     {% endfor %}
     <input type="hidden" name="userLicenses">
   </div>
-  <p><b>After pressing submit please WAIT for the page to load. This can take several seconds.</b></p>
-  <button type="submit" class="btn btn-success" onsubmit="this.disabled = true;">Submit</button>
 </form>
 <script>
   function prepareLicenseData() {
