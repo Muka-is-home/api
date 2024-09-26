@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from adminportal.views import user_list, update_approval, edit_blog, create_blog, blog_list, delete_blog, create_shop_item, edit_shop_item, shop_list, delete_shop_item, create_specialization, edit_specialization, specialization_list, delete_specialization
+from adminportal.views import user_list, update_approval, edit_blog, create_blog, blog_list, delete_blog, create_shop_item, edit_shop_item, shop_list, delete_shop_item, create_specialization, edit_specialization, specialization_list, delete_specialization, delete_user
 
 app_name = "muka"
 
@@ -21,4 +21,5 @@ urlpatterns = [
   path(f"{app_name}/edit_specialization/<int:pk>", edit_specialization, name="edit_specialization"),
   path(f"{app_name}/specialization_list", specialization_list, name="specialization_list"),
   path(f"{app_name}/delete_specialization/<int:pk>", delete_specialization, name="delete_specialization"),
+  path(f"{app_name}/delete_user/<int:pk>", delete_user, name="delete_user")
 ]
