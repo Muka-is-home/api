@@ -1,9 +1,10 @@
 def signup_email_body(name):
     return f"""
 Dear {name},
-Muka is more than just a website; it's a HOME community for minority agents and vendors. We appreciate your decision to join us on this exciting journey as we aim to open doors for all.
 
-Just like finding your forever home, building the perfect community takes time. We are working around the clock to ensure that this HOME provides you with everything you need, whether you're a realtor or a home vendor.
+Muka is more than just a website; it's a HOME community for minority agents and experts. We appreciate your decision to join us on this exciting journey as we aim to open doors for all.
+
+Just like finding your forever home, building the perfect community takes time. We are working around the clock to ensure that this HOME provides you with everything you need, whether you're a realtor or a home expert.
 
 Thank you for applying! Your step towards becoming a part of our diverse community is invaluable. Over the next couple of days, we will diligently work on our end to process and approve your application. In the meantime, feel free to take a virtual stroll around our HOME – explore the opportunities and possibilities that await.
 
@@ -17,6 +18,7 @@ Founder, Muka
 def rejection_email_body(name):
     return f"""
 Hello {name},
+
 Thank you for your interest in becoming a part of our HOME community at Muka.
 
 It is with regret that we inform you that, after careful consideration, your application has been rejected at this time. We understand that this news may be disappointing, and we appreciate the effort you put into applying.
