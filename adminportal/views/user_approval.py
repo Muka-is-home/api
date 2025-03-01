@@ -22,7 +22,7 @@ def update_approval(request):
                     email = EmailMessage(
                         'WELCOME HOME!',
                         approval_email_body(user.name),
-                        f'{env("EMAIL_HOST_USER")}',
+                        f'Muka <{env("EMAIL_HOST_USER")}>',
                         [user.email]
                     )
                     email.send()
@@ -34,7 +34,7 @@ def update_approval(request):
                     email = EmailMessage(
                         'Your Application Status with Muka',
                         rejection_email_body(user.name),
-                        f'{env("EMAIL_HOST_USER")}',
+                        f'Muka <{env("EMAIL_HOST_USER")}>',
                         [user.email]
                     )
                     email.send()
