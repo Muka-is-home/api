@@ -198,16 +198,16 @@ def user_licenses(request):
         email_to_user = EmailMessage(
                     f'Thank You for Taking the First Step!',
                     signup_email_body(user_profile.name),
-                    f'{env("EMAIL_HOST_USER")}',
+                    f'Muka <{env("EMAIL_HOST_USER")}>',
                     [user_profile.email]
                 )
         email_to_user.send()
 
         email_to_muka = EmailMessage(
-                    f'new Muka applicant - {user_profile.name}',
-                    f'{user_profile.name} has signed up! Login to the Muka Admin App: https://web.mukaishome.com/muka/login',
-                    f'{env("EMAIL_HOST_USER")}',
-                    ['hello@mukaishome.com']
+                    f'Review New User Signup! {user_profile.name}',
+                    f'{user_profile.name} has signed up. Login to https://web.mukaishome.com/muka/login to approve or reject.',
+                    f'Muka <{env("EMAIL_HOST_USER")}>',
+                    ['hello@mukaishome.com','muka.web.dev@gmail.com']
                 )
         email_to_muka.send()
         return render(request, "adminapp/thank_you.html")
