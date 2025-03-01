@@ -19,8 +19,9 @@ urlpatterns = [
   ), name="thank_you"),
   path(f"{app_name}/rejected", TemplateView.as_view(template_name="adminapp/rejection.html"), name="rejection"),
   path(f"{app_name}/edit_licenses/<int:pk>", edit_licenses, name="edit_licenses"),
-  path(f"{app_name}/update_profile_image/<int:pk>", update_profile_picture, name='update_profile_image')
-]
+  path(f"{app_name}/update_profile_image/<int:pk>", update_profile_picture, name='update_profile_image'),
+  path(f"{app_name}/inactive", TemplateView.as_view(template_name="adminapp/inactive_user.html"), name="inactive")
+  ]
 
 password_reset_paths = [
   path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "adminapp/password_reset/reset_password.html"), name ='reset_password'),
