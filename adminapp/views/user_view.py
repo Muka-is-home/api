@@ -188,27 +188,28 @@ def user_licenses(request):
                 )
 
         env = get_env(__file__)
-        email_to_muka = EmailMessage(
-                    f'new Muka applicant - {user_profile.name}',
-                    f'{user_profile.name} has applied for Muka!',
-                    f'{env("EMAIL_HOST_USER")}',
-                    [env("EMAIL_HOST_USER")]
-                )
-        email_to_muka.send()
-        email_to_user = EmailMessage(
-                    f'Thank You for Taking the First Step!',
-                    signup_email_body(user_profile.name),
-                    f'{env("EMAIL_HOST_USER")}',
-                    [user_profile.email]
-                )
-        email_to_muka.send()
-        email_to_user.send()
 
         user_profile.ready_for_approval = True
         user_profile.save()
         user_profile.user.is_active = True
         user_profile.user.save()
         user_data = UserFormSerializer(user_profile).data
+        
+        email_to_user = EmailMessage(
+                    f'Thank You for Taking the First Step!',
+                    signup_email_body(user_profile.name),
+                    f'{env("EMAIL_HOST_USER")}',
+                    [user_profile.email]
+                )
+        email_to_user.send()
+
+        email_to_muka = EmailMessage(
+                    f'new Muka applicant - {user_profile.name}',
+                    f'{user_profile.name} has signed up! Login to the Muka Admin App: https://web.mukaishome.com/muka/login',
+                    f'{env("EMAIL_HOST_USER")}',
+                    ['hello@mukaishome.com']
+                )
+        email_to_muka.send()
         return render(request, "adminapp/thank_you.html")
 
 @login_required
