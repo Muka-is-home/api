@@ -189,12 +189,14 @@ def user_licenses(request):
 
         env = get_env(__file__)
 
-        user_profile.ready_for_approval = True
-        user_profile.save()
-        user_profile.user.is_active = True
-        user_profile.user.save()
-        user_data = UserFormSerializer(user_profile).data
-        
+        email_to_muka = EmailMessage(
+                    f'Review New User Signup! {user_profile.name}',
+                    f'{user_profile.name} has signed up. Login to https://web.mukaishome.com/muka/login to approve or reject.',
+                    f'Muka <{env("EMAIL_HOST_USER")}>',
+                    ['hello@mukaishome.com','muka.web.dev@gmail.com']
+                )
+        email_to_muka.send()
+
         email_to_user = EmailMessage(
                     f'Thank You for Taking the First Step!',
                     signup_email_body(user_profile.name),
@@ -203,13 +205,11 @@ def user_licenses(request):
                 )
         email_to_user.send()
 
-        email_to_muka = EmailMessage(
-                    f'Review New User Signup! {user_profile.name}',
-                    f'{user_profile.name} has signed up. Login to https://web.mukaishome.com/muka/login to approve or reject.',
-                    f'Muka <{env("EMAIL_HOST_USER")}>',
-                    ['hello@mukaishome.com','muka.web.dev@gmail.com']
-                )
-        email_to_muka.send()
+        user_profile.ready_for_approval = True
+        user_profile.save()
+        user_profile.user.is_active = True
+        user_profile.user.save()
+        user_data = UserFormSerializer(user_profile).data
         return render(request, "adminapp/thank_you.html")
 
 @login_required
