@@ -26,7 +26,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <input type="submit" value="Login" class="btn btn-success mt-3" style="width:100%">
+        <input type="submit" value="Login" class="btn btn-success mt-3" style="width:100%" onsubmit="this.disabled = true;">
         <hr>
         <p class="text-center">Don't have an account? <a href="{% url 'signup' %}" style="color:#1e967f">Join Now</a></p>
         <p class="text-center">Forgot Password? <a href="{% url 'reset_password' %}" style="color:#1e967f">Click Here</a></p>
