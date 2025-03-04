@@ -50,15 +50,18 @@
     const userLicenses = [];
 
     for (let i = 0; i < licenses.length; i++) {
-      if (licenses[i].value and licenses[i].value.strip()) {
-        const userLicense = `${licenses[i].id}-${licenses[i].value}`
-        userLicenses.push(userLicense)
+      if (licenses[i].value) {
+        if (licenses[i].value.trim() !== "") {
+          const userLicense = `${licenses[i].id}-${licenses[i].value}`
+          userLicenses.push(userLicense)
+        }
       }
     }
 
-    if not userLicenses:
+    if (userLicenses.length === 0) {
       alert("Please select at least one state in which you operate and enter your license number.");
       return false;
+    }
 
     const hiddenInput = document.querySelector('input[name="userLicenses"]');
     hiddenInput.value = userLicenses.join(', ');
