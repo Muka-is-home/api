@@ -4,7 +4,7 @@
 <form action="{% url 'user_licenses' %}" method="POST" id="userLicenseForm" onsubmit="return prepareLicenseData();" class="container">
   {% csrf_token %}
   <h1>State License and County Information</h1>
-  <p>Please select the states and counties in which you operate. Also include your license numbers. At least one location is REQUIRED to move forward in the application process.</p>
+  <p>Please select at least one state in which you operate and enter your license number.</p>
   <button type="Submit" class="btn btn-success" onsubmit="this.disabled = true;">Submit</button>
   <div class="accordion accordion-flush mt-1 mb-1" id="stateCounties">
     {% for state in states %}
@@ -50,17 +50,20 @@
     const userLicenses = [];
 
     for (let i = 0; i < licenses.length; i++) {
-      if (licenses[i].value) {
+      if (licenses[i].value and licenses[i].value.strip()) {
         const userLicense = `${licenses[i].id}-${licenses[i].value}`
         userLicenses.push(userLicense)
       }
     }
 
+    if not userLicenses:
+      alert("Please select at least one state in which you operate and enter your license number.");
+      return false;
+
     const hiddenInput = document.querySelector('input[name="userLicenses"]');
     hiddenInput.value = userLicenses.join(', ');
     
     return true;
-
   }
 </script>
 {% endblock %}
