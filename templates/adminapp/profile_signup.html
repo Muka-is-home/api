@@ -4,11 +4,11 @@
   <h2>Let's Create Your Profile</h2>
   <br>
       <div class="row">
-          <a href="{% url 'profile' 'Realtor' %}" class="btn btn-success" id="realtorButton">Realtor</a>
+          <a href="{% url 'profile' 'Realtor' %}" class="btn btn-success" id="realtorButton" onsubmit="this.disabled = true;">Realtor</a>
       </div>
   <br>
       <div class="row">
-          <a href="{% url 'profile' 'Vendor' %}" class="btn btn-success" id="vendorButton">Expert</a>
+          <a href="{% url 'profile' 'Vendor' %}" class="btn btn-success" id="vendorButton" onsubmit="this.disabled = true;">Expert</a>
       </div>
 </div>
 {%endblock content%}
